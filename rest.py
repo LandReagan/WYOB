@@ -1,0 +1,2 @@
+class Rest:
+	pass
