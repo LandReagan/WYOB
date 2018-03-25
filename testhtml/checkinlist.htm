@@ -1,0 +1,1405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="fr"><head>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+      <title>MLT Checkin List Menu Frame</title>
+
+
+<script>
+
+    function disable_right_click(e)
+{
+    var browser = navigator.appName.substring ( 0, 9 );
+    var event_number = 0;
+    if (browser=="Microsoft")
+        event_number = event.button;
+    else if (browser=="Netscape")
+        event_number = e.which;
+
+    if ( event_number==2 || event_number==3 )
+        {
+        alert ("Right Mouse Button Is Temporarily Disabled");
+        return (false);
+        }
+
+    return (true);
+}
+function check_mousekey ()
+{
+    var mouse_key = 93;
+    var keycode = event.keyCode;
+
+    if ( keycode == mouse_key )
+        alert ( "Mouse Key Is Disabled" );
+}
+
+function trap_page_mouse_key_events ()
+{
+
+    var browser = navigator.appName.substring ( 0, 9 );
+
+    document.onmousedown = disable_right_click;
+
+    //if ( browser == "Microsoft" )
+        document.onkeydown = check_mousekey;
+    //else if ( browser == "Netscape" )
+    //    document.captureEvents( Event.MOUSEDOWN );
+
+}
+
+    window.onload = trap_page_mouse_key_events;
+
+</script>
+
+
+
+<link href="checkinlist_data/iob_style.css" rel="stylesheet" type="text/css">
+       <script>
+       <!--
+
+   function DrawFooter(bgtype, homerequired)
+{
+  document.write('<hr size="1">');
+  document.write('<table width="99%">');
+  document.write('<tr>');
+  document.write('<td><a href="http://www.ibsplc.com" target="_blank">www.ibsplc.com</div></a></td>');
+  document.write('<td>&nbsp;</td>');
+  document.write('<td class="r">Contact us at <a href="mailto:support@ibsplc.com">support@ibsplc.com</a></td>');
+  document.write('</tr>');
+  document.write('</table>');
+}
+
+       -->
+       </script>
+
+        <script language="javascript" type="text/javascript">
+        <!-- Hide script from old browsers
+            function printWindow ()
+            {
+                window.print ();
+            }
+        // End hiding script from old browsers -->
+        </script>
+
+
+<title>Untitled Document</title><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_showHideLayers() { //v6.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v=='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+
+function hideTable(tab) {
+if(document.all(tab)) {
+document.all(tab).style.display='none';
+}
+}
+
+function showTable(tab) {
+if(document.all(tab)) {
+document.all(tab).style.display='inline';
+}
+}
+
+function callUserSpecificReport(reportFileName,reportType) {
+var url = 'userSpecificReportAction.do?reportFileName='+reportFileName+'&reportType='+reportType;
+editwin = window.open(url,"win","menubar=no,status=yes,toolbar=no,titlebar=no,location=no,scrollbars=yes,resizable=yes,left=0,top=0,width=1024,height=768");
+}
+var menuItemLevel1;
+var menuItemLevel2;
+var menuItemLevel3;
+var timerObjectLevel1;
+var timerObjectLevel2;
+var timerObjectLevel3;
+var currentOpenLevel1 = " ";
+var currentOpenLevel2 = " ";
+var currentOpenLevel3 = " ";
+var smTabID;
+var smOpenTimer =0;
+var smCloseTimer =0;
+var smToClose;
+var toCloseArrayLevel3 = new Array();
+var openedMenuLevel2 = " ";
+var openedMenuLevel3 = " ";
+var toOpenMenuLevel2 = " ";
+function showMenuLevel1(mItem){
+	if(currentOpenLevel1 != mItem){
+		MM_showHideLayers(currentOpenLevel1,'','hide');
+		currentOpenLevel1=" ";
+	}
+	if(timerObjectLevel1){
+		clearTimeout(timerObjectLevel1);
+	}
+	currentOpenLevel1 = mItem;
+	MM_showHideLayers(mItem,'','show');
+	menuItemLevel1=mItem;
+}
+function hideMenuLevel1(){
+	MM_showHideLayers(menuItemLevel1,'','hide');
+	currentOpenLevel1=" ";
+}
+function timeoutFunctionLevel1(menuToHide){
+	menuItemLevel1=menuToHide;
+	timerObjectLevel1 = setTimeout("hideMenuLevel1()",1000);
+}
+function showMenuLevel2(mItem){
+	if(currentOpenLevel2 != mItem){
+		closeAll();
+	}
+	if(timerObjectLevel2){
+		clearTimeout(timerObjectLevel2);
+	}
+	currentOpenLevel2 = mItem;
+	MM_showHideLayers(mItem,'','show');
+	menuItemLevel2=mItem;
+}
+function hideMenuLevel2(){
+	MM_showHideLayers(menuItemLevel2,'','hide');
+	currentOpenLevel2 = " ";
+	checkClose();
+}
+function timeoutFunctionLevel2(menuToHide){
+	menuItemLevel2=menuToHide;
+	timerObjectLevel2 = setTimeout("hideMenuLevel2()",1000);
+	toOpenMenuLevel2 = " ";
+	parentMenuOfLevel3 = " ";
+}
+function showMenuLevel3(mItem, tabId){
+	if(smOpenTimer){
+		clearTimeout(smOpenTimer);
+	}
+	parentMenuOfLevel3 = menuItemLevel2;
+	toOpenMenuLevel2 = menuItemLevel2;
+	menuItemLevel3=mItem;
+	smTabID = tabId;
+	addToOpenedMenus(mItem);
+	smOpenTimer = setTimeout("smOpenFunction()",500);
+}
+function smOpenFunction(){
+	if(	toOpenMenuLevel2 == " "){
+		MM_showHideLayers(menuItemLevel3,'','hide');
+	}else{
+		if(smTabID){
+			showTable(smTabID);
+		}
+		currentOpenLevel3=menuItemLevel3;
+		MM_showHideLayers(menuItemLevel3,'','show');
+		menuItemLevel3 = ' ';
+	}
+}
+function hideMenuLevel3(){
+	if(currentOpenLevel3 != menuItemLevel3){
+		checkClose();
+		MM_showHideLayers(smToClose,'','hide');
+		clearTimeout(smCloseTimer);
+	}else{
+		MM_showHideLayers(currentOpenLevel3,'','show');
+		clearTimeout(smCloseTimer);
+	}
+}
+function timeoutFunctionLevel3(menuToHide){
+	toCloseArrayLevel3[toCloseArrayLevel3.length] = menuToHide;
+	smToClose=menuToHide;
+	smCloseTimer = setTimeout("hideMenuLevel3()",500);
+	parentMenuOfLevel3 = " ";
+}
+function checkClose(){
+	if(smCloseTimer){
+		clearTimeout(smCloseTimer);
+	}
+	if(toCloseArrayLevel3){
+		var arrayLength = toCloseArrayLevel3.length;
+		for(i=0; i<arrayLength; i++){
+			MM_showHideLayers(toCloseArrayLevel3[i],'','hide');
+		}
+		toCloseArrayLevel3 = new Array();
+	}
+}
+function addToOpenedMenus(mItem){
+	if(openedMenuLevel3.search(mItem) < 0){
+		openedMenuLevel3 = openedMenuLevel3+","+mItem;
+	}
+}
+function closeAll(){
+	clearTimeout(smOpenTimer);
+	clearTimeout(smCloseTimer);
+	var tempArray;
+	menuItemLevel3 = ' ';
+	hideTable(smTabID);
+	checkClose();
+
+	tempArray = openedMenuLevel3.split(",");
+	var arrayLength = tempArray.length;
+	for(i=0; i<arrayLength; i++){
+		MM_showHideLayers(tempArray[i],'','hide');
+	}
+	openedMenuLevel3 = " ";
+	
+	MM_showHideLayers(currentOpenLevel2,'','hide');
+	currentOpenLevel2 = " ";
+	toOpenMenuLevel2 = " ";
+	parentMenuOfLevel3 = " ";
+}
+
+//-->
+</script><script>
+        function disable_right_click(e)
+{
+    var browser = navigator.appName.substring ( 0, 9 );
+    var event_number = 0;
+    if (browser=="Microsoft")
+        event_number = event.button;
+    else if (browser=="Netscape")
+        event_number = e.which;
+
+    if ( event_number==2 || event_number==3 )
+        {
+        alert ("Right Mouse Button Is Temporarily Disabled");
+        return (false);
+        }
+
+    return (true);
+}
+function check_mousekey ()
+{
+    var mouse_key = 93;
+    var keycode = event.keyCode;
+
+    if ( keycode == mouse_key )
+        alert ( "Mouse Key Is Disabled" );
+}
+
+function trap_page_mouse_key_events ()
+{
+
+    var browser = navigator.appName.substring ( 0, 9 );
+
+    document.onmousedown = disable_right_click;
+
+    //if ( browser == "Microsoft" )
+        document.onkeydown = check_mousekey;
+    //else if ( browser == "Netscape" )
+    //    document.captureEvents( Event.MOUSEDOWN );
+
+}
+
+    </script><script language="javascript">
+function disableRightClick() {
+
+
+    trap_page_mouse_key_events();
+
+}
+</script><link href="checkinlist_data/menu.css" rel="stylesheet" type="text/css"></head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<body onload="MM_showHideLayers('ourairline','','hide');MM_showHideLayers('myIOB','','hide');MM_showHideLayers('crew','','hide');MM_showHideLayers('aircraft','','hide');MM_showHideLayers('flights','','hide');MM_showHideLayers('airport','','hide');MM_showHideLayers('admin','','hide');MM_showHideLayers('report','','hide');disableRightClick();">
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+  <tbody><tr>
+    <td class="nopad"><img src="checkinlist_data/topband.gif"></td>
+  </tr>
+</tbody></table>
+<table class="menu" cellspacing="0" cellpadding="0" width="804">
+  <tbody><tr>
+  <td>&nbsp;&nbsp;&nbsp;</td>
+    <td width="14%"><table class="menu" onmouseover="this.className='Rollover';closeAll();showMenuLevel1('ourairline');showTable('airltab');" onmouseout="this.className='menu';timeoutFunctionLevel1('ourairline')" height="18px" width="95%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_our_airline.gif"></td>
+          <td width="76%">Our Airline&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="13%"><table class="menu" onmouseover="this.className='Rollover';closeAll();showMenuLevel1('myIOB');showTable('iobtab');" onmouseout="this.className='menu';timeoutFunctionLevel1('myIOB')" width="80%">
+        <tbody><tr>
+          <td width="23%"><img src="checkinlist_data/icon_myIOB.gif" height="18" width="18"></td>
+          <td width="77%">My IOB&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="11%"><table class="menu" onmouseover="this.className='Rollover';closeAll();showMenuLevel1('crew');showTable('crewtab');" onmouseout="this.className='menu';timeoutFunctionLevel1('crew')" width="80%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_crew.gif" height="18" width="18"></td>
+          <td width="76%">Crew&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="14%"><table class="menu" onmouseover="className='Rollover';closeAll();showMenuLevel1('aircraft');showTable('airtab');" onmouseout="className='menu';timeoutFunctionLevel1('aircraft')" height="18px" width="80%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_aircraft.gif" height="14"></td>
+          <td width="76%">Aircraft&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="12%"><table class="menu" onmouseover="className='Rollover';closeAll();showMenuLevel1('flights');showTable('flttab');" onmouseout="className='menu';timeoutFunctionLevel1('flights')" width="90%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_flights.gif" height="18" width="18"></td>
+          <td width="76%">Flights&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="12%"><table class="menu" onmouseover="className='Rollover';closeAll();showMenuLevel1('airport');showTable('airptab');" onmouseout="className='menu';timeoutFunctionLevel1('airport')" width="90%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_airport.gif"></td>
+          <td width="76%">Airport&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="12%"><table class="menu" onmouseover="className='Rollover';closeAll();showMenuLevel1('admin');showTable('admtab');" onmouseout="className='menu';timeoutFunctionLevel1('admin')" height="18px" width="90%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_admin.gif"></td>
+          <td width="76%">Admin&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="12%"><table class="menu" onmouseover="className='Rollover';closeAll();showMenuLevel1('report');showTable('reptab');" onmouseout="className='menu';timeoutFunctionLevel1('report')" height="18px" width="90%">
+        <tbody><tr>
+          <td width="24%"><img src="checkinlist_data/icon_reports.gif" height="18" width="18"></td>
+          <td width="76%">Reports&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow_down.gif" height="9" width="9"></td>
+        </tr>
+      </tbody></table></td>
+    <td width="12%"><table class="menu" height="18px" width="90%">
+        <tbody><tr>
+
+          <td width="24%"></td>
+          <td width="76%"></td>
+
+        </tr>
+      </tbody></table></td>
+  </tr>
+</tbody></table>
+<div id="ourairline" style="position: absolute; width: 107px; height: 28px; z-index: 4; left: 11px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel1('ourairline')" onmouseout="timeoutFunctionLevel1('ourairline')">
+
+
+  
+</div>
+<div id="myIOB" style="position: absolute; width: 115px; height: 60px; z-index: 1; left: 122px; top: 83px; visibility: hidden;" onmouseout="timeoutFunctionLevel1('myIOB')" onmouseover="showMenuLevel1('myIOB')">
+
+  <table id="iobtab" class="submenu" style="display: inline;" border="1" width="100%">
+    <script>
+        hideTable('iobtab');
+    </script>
+    <tbody><tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/endpreaction.do'"><img src="checkinlist_data/bullet.gif" class="bullet"> Logout</td>
+    </tr>
+   
+    <tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=passwordmenu.jsp&amp;title=Change Password'"><img src="checkinlist_data/bullet.gif" class="bullet"> Change Password</td>
+    </tr>
+   
+
+    
+
+    
+
+    <tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mltcrewmain.jsp?myroster=true'"><img src="checkinlist_data/bullet.gif" class="bullet"> My Diary</td>
+    </tr>
+
+    
+	
+    <tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/checkinfilterpreaction.do?menucall=TRUE'"><img src="checkinlist_data/bullet.gif" class="bullet"> Checkin/Roster</td>
+    </tr>
+	
+    
+    <tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mltcreditmain.jsp'"><img src="checkinlist_data/bullet.gif" class="bullet"> My Credit</td>
+    </tr>
+    
+    
+  </tbody></table>
+  
+</div>
+
+
+
+<div id="crew" style="position: absolute; width: 130px; height: 115px; z-index: 2; left: 225px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel1('crew')">
+  <table id="crewtab" class="submenu" style="display: inline;" border="1" width="100%">
+    <script>
+          hideTable('crewtab');
+    </script>
+    
+    <tbody><tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mltcrewmain.jsp'" class="submenu"><img src="checkinlist_data/bullet.gif" class="bullet"> Select Any Crew</td>
+    </tr>
+    
+
+    
+    
+    <tr>
+        <td onmouseover="this.className='subRollOver';showMenuLevel2('voyage');showTable('voytab');" onmouseout="this.className='submenu';timeoutFunctionLevel2('voyage')" onclick="" class="submenu"><img src="checkinlist_data/bullet.gif" class="bullet">Voyage Details<img src="checkinlist_data/icon_arrow.gif" height="9" width="9"></td>
+    </tr>
+    
+    
+   	
+    
+    
+    
+    
+     
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <tr>
+            <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=trainingAction.do&amp;title=Training'" class="submenu">
+            <img src="checkinlist_data/bullet.gif" class="bullet"> Training</td>
+        </tr>
+    
+    
+    
+    
+    
+
+
+     
+
+ </tbody></table>
+</div>
+
+<div id="aircraft" style="position: absolute; width: 127px; height: 50px; z-index: 3; left: 310px; top: 83px; visibility: hidden;" onmouseout="timeoutFunctionLevel1('aircraft')" onmouseover="showMenuLevel1('aircraft')">
+  <table id="airtab" class="submenu" style="display: none;" border="1" width="100%">
+    <script>
+          hideTable('airtab');
+    </script>
+    
+   
+    
+
+
+  </table>
+</div>
+<div id="flights" style="position: absolute; width: 111px; height: 28px; z-index: 4; left: 423px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel1('flights')" onmouseout="timeoutFunctionLevel1('flights')">
+  <table id="flttab" class="submenu" style="display: none;" border="1" width="100%">
+    <script>
+         hideTable('flttab');
+    </script>
+  
+  
+  
+  
+  
+
+  </table>
+</div>
+<div id="messages" style="position: absolute; width: 142px; height: 48px; z-index: 5; left: 533px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel2('messages');showMenuLevel1('flights')" onmouseout="timeoutFunctionLevel2('messages');timeoutFunctionLevel1('flights')">
+  <table id="msgtab" class="submenu" style="display: none;" border="1" width="100%">
+    <script>
+          hideTable('msgtab');
+    </script>
+  
+  
+  
+
+   </table>
+</div>
+<div id="airport" style="position: absolute; width: 142px; height: 48px; z-index: 5; left: 519px; top: 83px; visibility: hidden;" onmouseout="timeoutFunctionLevel1('airport')" onmouseover="showMenuLevel1('airport')">
+
+  <table id="airptab" class="submenu" style="display: none;" border="1" width="100%">
+    <script>
+          hideTable('airptab');
+    </script>
+  
+  
+
+  
+   </table>
+</div>
+
+<div id="admin" style="position: absolute; width: 155px; height: 115px; z-index: 6; left: 614px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel1('admin')" onmouseout="timeoutFunctionLevel1('admin')">
+  <table id="admtab" class="submenu" style="display: inline;" border="1" width="100%">
+    <script>
+          hideTable('admtab');
+    </script>
+
+  
+    
+    
+  
+
+    
+    
+    
+    
+	
+    		
+    
+    
+    
+  </table>
+  </div>
+
+<div id="userreports" style="position: absolute; width: 142px; height: 48px; z-index: 5; left: 510px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel2('userreports');showMenuLevel1('report')" onmouseout="timeoutFunctionLevel2('userreports');timeoutFunctionLevel1('report')">
+
+  <table id="userrpttab" class="submenu" style="display: none;" border="1" width="100%">
+    <script>
+          hideTable('userrpttab');
+    </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <tbody><tr>
+      <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="callUserSpecificReport('Crew_Allowance_Oas4.rpt','CREW')"><img src="checkinlist_data/bullet.gif" class="bullet"> Crew Allowance Statement</td>
+    </tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   </tbody></table>
+</div>
+
+<div id="report" style="position: absolute; width: 155px; height: 115px; z-index: 6; left: 650px; top: 83px; visibility: hidden;" onmouseover="showMenuLevel1('report')" onmouseout="timeoutFunctionLevel1('report')">
+
+  <table id="reptab" class="submenu" style="display: inline;" border="1" width="100%">
+    <script>
+          hideTable('reptab');
+    </script>
+
+         <tbody><tr>
+            <td onmouseover="this.className='subRollOver';showMenuLevel2('userreports');showTable('userrpttab');" onmouseout="this.className='submenu';timeoutFunctionLevel2('userreports')" onclick=""><img src="checkinlist_data/bullet.gif" class="bullet"> Customer Reports&nbsp;&nbsp;&nbsp;&nbsp;<img src="checkinlist_data/icon_arrow.gif" height="9" width="9"></td>
+         </tr>
+  
+    
+
+    
+    
+     
+
+     
+
+    
+
+    
+
+     
+
+    
+     
+    
+
+    
+
+   
+  	
+
+   	
+
+	
+    
+
+     
+
+    
+    
+
+    
+
+    
+
+    
+	
+    
+
+
+     
+    
+
+   
+
+  </tbody></table>
+  </div>
+
+  
+
+  <div id="voyage" style="position: absolute; width: 111px; height: 28px; z-index: 4; left: 355px; top: 103px; visibility: hidden;" onmouseover="showMenuLevel2('voyage');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel2('voyage');timeoutFunctionLevel1('crew')">
+    <table id="voytab" class="submenu" style="display: inline;" border="1" width="100%">
+      <script>
+           hideTable('voytab');
+      </script>
+    
+      <tbody><tr>
+        <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=voyageselect.jsp&amp;title=Flight Voyage Details Selection'"><img src="checkinlist_data/bullet.gif" class="bullet"> Flight</td>
+      </tr>
+    
+    
+    </tbody></table>
+  </div>
+
+
+<div id="reference" style="position: absolute; width: 155px; height: 28px; z-index: 4; left: 355px; top: 122px; visibility: hidden;" onmouseover="showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="reftab" class="submenu" style="display: none;" border="1" width="100%">
+      <script>
+           hideTable('reftab');
+      </script>
+    
+     
+    
+    
+    
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+	
+
+    
+    
+    
+    
+    
+     
+    
+    
+    
+    
+
+    
+    
+
+    
+    </table>
+  </div>
+
+<div id="leave" style="position: absolute; width: 155px; height: 28px; z-index: 4; left: 355px; top: 122px; visibility: hidden;" onmouseover="showMenuLevel2('leave');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel2('leave');timeoutFunctionLevel1('crew')">
+   <table id="leavetab" class="submenu" style="display: none;" border="1" width="100%">
+     <script>
+          hideTable('leavetab'); 
+     </script>
+	
+</table> 
+</div>
+
+
+  <div id="fleet" style="position: absolute; width: 226px; height: 28px; z-index: 4; left: 509px; top: 122px; visibility: hidden;" onmouseover="showMenuLevel3('fleet');showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel3('fleet');timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="fletab" class="submenu" style="display: none;" border="1" width="100%">
+        <script>
+             hideTable('fletab');
+        </script>
+    
+    
+    
+    
+    
+    
+
+     
+
+
+    </table>
+  </div>
+
+  <div id="complements" style="position: absolute; width: 205px; height: 28px; z-index: 4; left: 509px; top: 141px; visibility: hidden;" onmouseover="showMenuLevel3('complements');showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel3('complements');timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="comptab" class="submenu" style="display: none;" border="1" width="100%">
+      <script>
+           hideTable('comptab');
+      </script>
+    
+    
+    
+    
+    
+    </table>
+  </div>
+
+  <div id="qualification" style="position: absolute; width: 136px; height: 28px; z-index: 4; left: 509px; top: 160px; visibility: hidden;" onmouseover="showMenuLevel3('qualification');showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel3('qualification');timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="qualiftab" class="submenu" style="display: none;" border="1" width="100%">
+        <script>
+             hideTable('qualiftab');
+        </script>
+    
+    
+    
+    </table>
+  </div>
+
+  <div id="station" style="position: absolute; width: 124px; height: 28px; z-index: 4; left: 509px; top: 179px; visibility: hidden;" onmouseover="showMenuLevel3('station');showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel3('station');timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="statab" class="submenu" style="display: none;" border="1" width="100%">
+        <script>
+             hideTable('statab');
+        </script>
+    
+    
+    
+    </table>
+  </div>
+  
+   <div id="manifest" style="position: absolute; width: 136px; height: 28px; z-index: 4; left: 509px; top: 140px; visibility: hidden;" onmouseover="showMenuLevel3('manifest');showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel3('manifest');timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="mantab" class="submenu" style="display: none;" border="1" width="100%">
+        <script>
+             hideTable('mantab');
+        </script>
+    
+       
+
+   	
+    </table>
+  </div>
+  
+  <div id="eswaprestriction" style="position: absolute; width: 136px; height: 28px; z-index: 4; left: 509px; top: 198px; visibility: hidden;" onmouseover="showMenuLevel3('eswaprestriction');showMenuLevel2('reference');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel3('eswaprestriction');timeoutFunctionLevel2('reference');timeoutFunctionLevel1('crew')">
+    <table id="eswaptab" class="submenu" style="display: none;" border="1" width="100%">
+        <script>
+             hideTable('eswaptab');
+        </script>
+    
+    
+    </table>
+  </div>
+
+<div id="eswap" style="position: absolute; width: 111px; height: 28px; z-index: 4; left: 355px; top: 122px; visibility: hidden;" onmouseover="showMenuLevel2('eswap');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel2('eswap');timeoutFunctionLevel1('crew')">
+    <table id="swaptab" class="submenu" style="display: none;" border="1" width="100%">
+      <script>
+           hideTable('swaptab');
+      </script>
+
+      <tbody><tr>
+        <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=swapofferselect.jsp&amp;title=Offered Selection'"><img src="checkinlist_data/bullet.gif" class="bullet"> Offer</td>
+      </tr>
+      <tr>
+        <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=swapwantrselect.jsp&amp;title=Wish Selection'"><img src="checkinlist_data/bullet.gif" class="bullet"> Wish</td>
+      </tr>
+      <tr>
+        <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=swaprecallselect.jsp&amp;title=My Requests'"><img src="checkinlist_data/bullet.gif" class="bullet"> My Requests</td>
+      </tr>
+      <tr>
+        <td onmouseover="this.className='subRollOver'" onmouseout="this.className='submenu'" onclick="window.parent.location.href='/mlt/mainpage.jsp?select=swapinboxselect.jsp&amp;title=Swap Inbox'"><img src="checkinlist_data/bullet.gif" class="bullet"> My InBox</td>
+      </tr>
+    </tbody></table>
+  </div>
+
+
+ <div id="admineswap" style="position: absolute; width: 150px; height: 28px; z-index: 4; left: 355px; top: 140px; visibility: hidden;" onmouseover="showMenuLevel2('admineswap');showMenuLevel1('crew')" onmouseout="timeoutFunctionLevel2('admineswap');timeoutFunctionLevel1('crew')">
+
+    <table id="adminswaptab" class="submenu" style="display: none;" border="1" width="100%">
+      <script>
+           hideTable('adminswaptab');
+      </script>
+
+    
+    
+    </table>
+  </div>
+
+  <table class="user" border="0" width="804">
+  <tbody><tr>
+    <td width="0%"></td>
+    <td width="1%"><img src="checkinlist_data/icon_arrow.gif" height="9" width="9"></td>
+    <td width="31%">93429</td>
+    <td width="15%">&nbsp;</td>
+    <td width="29%">&nbsp;</td>
+    <td width="2%"><img src="checkinlist_data/icon_logout.gif" height="18" width="18"></td>
+    <td width="9%"><a class="menu" href="https://fltops.omanair.com/mlt/endpreaction.do" onclick="return confirm('Are you sure you want to logout?');">Logout</a></td>
+    <td width="2%"><img src="checkinlist_data/icon_home.gif" height="18" width="18"></td>
+    <td width="21%"><a class="menu" href="https://fltops.omanair.com/mlt/mltloggedin.jsp?loggedin=true" target="_parent">Home</a></td>
+  </tr>
+</tbody></table>
+
+<table width="804">
+  <tbody><tr>
+    <td><hr size="1"></td>
+  </tr>
+</tbody></table>
+
+
+
+
+
+
+<div class="error_msg"></div>
+<center>
+
+    Roster for GAGNE, LANDRY (93429 )
+
+</center>
+
+
+<center>
+<a href="javascript:printWindow%20()"><img src="checkinlist_data/printer.gif" border="0">Print this Page</a><p></p>
+</center>
+<table class="list" cellspacing="0" cellpadding="0" border="1" width="804">
+<tbody><tr>
+  <th></th>
+  <th>Start</th>
+  <th>End</th>
+  <th>Trip</th>
+  <th>Duty</th>
+  <th>Leg</th>
+  <th>Flight</th>
+  <th>From</th>
+  <th>To</th>
+  <th>Acknowledge</th>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+05Apr2017 12:35
+(08:35)
+</td>
+<td class="listitem_0">
+05Apr2017 19:30
+(17:30)
+</td>
+<td class="listitem_0">123-00</td>
+<td class="listitem_0">1</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+05Apr2017 14:05
+(10:05)
+</td>
+<td class="listitem_0">
+05Apr2017 19:00
+(17:00)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY123 </td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0">MUC</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+06Apr2017 20:30
+(18:30)
+</td>
+<td class="listitem_0">
+07Apr2017 06:50
+(02:50)
+</td>
+<td class="listitem_0"></td>
+<td class="listitem_0">2</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+06Apr2017 21:45
+(19:45)
+</td>
+<td class="listitem_0">
+07Apr2017 06:20
+(02:20)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY124 </td>
+<td class="listitem_0">MUC</td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+08Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+08Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+09Apr2017 06:00
+(02:00)
+</td>
+<td class="listitem_0">
+09Apr2017 18:00
+(14:00)
+</td>
+<td class="listitem_0">
+HS-AM
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+10Apr2017 07:25
+(03:25)
+</td>
+<td class="listitem_0">
+10Apr2017 20:35
+(12:35)
+</td>
+<td class="listitem_0">823-01</td>
+<td class="listitem_0">1</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+10Apr2017 08:55
+(04:55)
+</td>
+<td class="listitem_0">
+10Apr2017 20:05
+(12:05)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY823 </td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0">KUL</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+11Apr2017 20:20
+(12:20)
+</td>
+<td class="listitem_0">
+12Apr2017 00:50
+(20:50)
+</td>
+<td class="listitem_0"></td>
+<td class="listitem_0">2</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+11Apr2017 21:35
+(13:35)
+</td>
+<td class="listitem_0">
+12Apr2017 00:20
+(20:20)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY824 </td>
+<td class="listitem_0">KUL</td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+13Apr2017 06:00
+(02:00)
+</td>
+<td class="listitem_0">
+13Apr2017 18:00
+(14:00)
+</td>
+<td class="listitem_0">
+HS-AM
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+14Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+14Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+15Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+15Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+16Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+16Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+17Apr2017 23:50
+(19:50)
+</td>
+<td class="listitem_0">
+18Apr2017 07:00
+(06:00)
+</td>
+<td class="listitem_0">103-00</td>
+<td class="listitem_0">1</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+18Apr2017 01:20
+(21:20)
+</td>
+<td class="listitem_0">
+18Apr2017 06:30
+(05:30)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY103 </td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0">LHR</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+19Apr2017 07:25
+(06:25)
+</td>
+<td class="listitem_0">
+19Apr2017 19:30
+(15:30)
+</td>
+<td class="listitem_0"></td>
+<td class="listitem_0">2</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+19Apr2017 08:25
+(07:25)
+</td>
+<td class="listitem_0">
+19Apr2017 19:00
+(15:00)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY104 </td>
+<td class="listitem_0">LHR</td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+20Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+20Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+21Apr2017 18:00
+(14:00)
+</td>
+<td class="listitem_0">
+22Apr2017 06:00
+(02:00)
+</td>
+<td class="listitem_0">
+HS-PM
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+22Apr2017 18:00
+(14:00)
+</td>
+<td class="listitem_0">
+23Apr2017 06:00
+(02:00)
+</td>
+<td class="listitem_0">
+HS-PM
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+24Apr2017 12:55
+(08:55)
+</td>
+<td class="listitem_0">
+24Apr2017 20:05
+(18:05)
+</td>
+<td class="listitem_0">143-00</td>
+<td class="listitem_0">1</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+24Apr2017 14:25
+(10:25)
+</td>
+<td class="listitem_0">
+24Apr2017 19:35
+(17:35)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY143 </td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0">MXP</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+25Apr2017 21:00
+(19:00)
+</td>
+<td class="listitem_0">
+26Apr2017 07:20
+(03:20)
+</td>
+<td class="listitem_0"></td>
+<td class="listitem_0">2</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+25Apr2017 22:15
+(20:15)
+</td>
+<td class="listitem_0">
+26Apr2017 06:50
+(02:50)
+</td>
+<td class="listitem_0"></td><td class="listitem_0"></td>
+<td class="listitem_0">1</td>
+<td class="listitem_0">WY144 </td>
+<td class="listitem_0">MXP</td>
+<td class="listitem_0">MCT</td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+27Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+27Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+28Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+28Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+29Apr2017 00:00
+(20:00)
+</td>
+<td class="listitem_0">
+29Apr2017 23:59
+(19:59)
+</td>
+<td class="listitem_0">
+OFF
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+<tr>
+<td class="listitem_0"></td>
+<td class="listitem_0">
+30Apr2017 06:00
+(02:00)
+</td>
+<td class="listitem_0">
+30Apr2017 18:00
+(14:00)
+</td>
+<td class="listitem_0">
+HS-AM
+</td>
+<td></td><td></td><td></td><td></td><td></td>
+<td class="listitem_0"></td>
+</tr>
+
+
+
+</tbody></table>
+
+<br>
+<center>
+<div class="error_msg"></div></center>
+
+<script language="JavaScript">
+<!-- Begin
+  DrawFooter();
+//  End -->
+</script><hr size="1"><table width="99%"><tbody><tr><td><a href="http://www.ibsplc.com/" target="_blank">www.ibsplc.com</a></td><td>&nbsp;</td><td class="r">Contact us at <a href="mailto:support@ibsplc.com">support@ibsplc.com</a></td></tr></tbody></table>
+
+
+
+</body></html>

@@ -1,0 +1,897 @@
+a:link {
+    color: #30c; font-family: tahoma, geneva, arial, sans-serif; text-decoration: underline;
+}
+a:hover {
+    color: #39f; font-family: tahoma, geneva, arial, sans-serif; text-decoration: underline;
+}
+a:visited {
+    color: #c36; font-family: tahoma, geneva, arial, sans-serif; text-decoration: underline;
+}
+a:hover {
+    color: #39f; font-family: tahoma, geneva, arial, sans-serif; text-decoration: underline;
+}
+a:active {
+    color: #30c; font-family: tahoma, geneva, arial, sans-serif; text-decoration: underline;
+}
+body {
+font-size: 11px;
+line-height: 14px;
+font-family: tahoma, geneva, arial, sans-serif;
+margin:0px;
+top: 0px;
+left:0px;
+scrollbar-arrow-color: 000;
+scrollbar-base-color:ccc;
+scrollbar-dark-shadow-color: #999;
+scrollbar-track-color: F5F5F5;
+scrollbar-face-color: #E6E7E8;
+scrollbar-shadow-color: ccc;
+scrollbar-highlight-color: #ccc;
+scrollbar-3d-light-color: #fff;
+}
+body.create {
+background-color: #EEE;
+margin:0px;
+top: 0px;
+left:0px;
+scrollbar-arrow-color: 000;
+scrollbar-base-color:ccc;
+scrollbar-dark-shadow-color: #999;
+scrollbar-track-color: F5F5F5;
+scrollbar-face-color: #E6E7E8;
+scrollbar-shadow-color: ccc;
+scrollbar-highlight-color: #ccc;
+scrollbar-3d-light-color: #fff;
+}
+hr {
+color: #2C7395;
+}
+
+/***Table***/
+table {
+    font-size: 11px;
+    border: 0px;
+    padding: 0px;
+    border-collapse:collapse;
+}
+td {
+font-size: 11px; font-family: tahoma, geneva, arial, sans-serif;
+}
+/* Center aligned table column */
+td.c {
+font-size: 11px; font-family: tahoma, geneva, arial, sans-serif; text-align: center;
+}
+td.r {
+font-size: 11px; font-family: tahoma, geneva, arial, sans-serif; text-align: right;
+}
+td.l {
+font-size: 11px; font-family: tahoma, geneva, arial, sans-serif; text-align: left;
+}
+th {
+color: white;
+font-size: 11px;
+font-family: MS Sans Serif, geneva, arial, sans-serif;
+background-color: #2C7395;
+padding-left: 3px;
+padding-right: 3px;
+padding-top: 3px;
+padding-bottom: 3px;
+}
+/* Table for the filter */
+table.select {
+    background-image:url('../images/table_bkgd.gif');
+    font-size: 11px;
+    border: 4px;
+    padding: 2px;
+    border-style: ridge;
+    border-width: 1px
+}
+/* Table column for the filter screen labels. The label color has to be blue and there shud be padding in the left */
+table.select td {
+    color: #006;
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 10px;
+    /*font-weight: bold;*/
+}
+/* Table column for the filter screen components, padding shud be more than the labels */
+table.select td.padd {
+    color: #29295C;
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    font-weight: bold;
+    padding-left: 20px;
+}
+/* Table column for the crew select pane, stations segment */
+table.select td.nopadd {
+    color: #29295C;
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    font-weight: bold;
+    padding-left: 2px;
+    text-align: center;
+}
+table.select td.cal{
+    text-align: left;
+    padding-left: 0px;
+    padding-top: 2px;
+}
+table.list {
+    font-size: 11px;
+    padding-left: 8px;
+    border-color: #336;
+    border-style: ridge;
+    border-width: 1px
+}
+table.list td {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+table.listfixed {
+    font-size: 11px;
+    padding-left: 8px;
+    border-color: #336;
+    border-style: ridge;
+    border-width: 1px;
+    table-layout:fixed;
+}
+table.listfixed td {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+table.screenid td {
+    text-align: right;
+    font-family: tahoma, geneva, arial, sans-serif;
+    color: #C47C78;
+    font-size: 11px;
+    padding-right: 8px;
+    font-weight: bold;
+}
+table.paging {
+    background-color: #EFEFEF;
+    font-size: 11px;
+    border-width: 1px
+    height: 25px;
+}
+td.padd {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 20px;
+}
+table.create {
+    font-size: 11px;
+    border: 4px;
+    padding: 0px;
+    border-collapse:collapse;
+}
+table.create td.heading {
+    font-size: 11px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    font-weight: bold;
+    color: #000;
+}
+table.create td.subheading {
+    font-size: 11px;
+    padding-left: 0px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+}
+table.create td {
+    font-size: 11px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    color: #006;
+}
+table.createsub {
+    background-color: #FFF;
+    color: #006;
+    font-size: 11px;
+    border-color: #336;
+    border-style: ridge;
+    border-width: 1px
+
+}
+table.createsub td.c {
+    color: #006;
+    font-size: 11px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: regular;
+}
+table.createsub td.l {
+    color: #006;
+    font-size: 11px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: regular;
+}
+table.createsub td {
+    color: #006;
+    font-size: 11px;
+    text-align: right;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: regular;
+}
+table.createsub td.txt {
+    color: #006;
+    font-size: 11px;
+    text-align: left;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-weight: regular;
+}
+table.createsub td.cal{
+    text-align: left;
+    padding-left: 1px;
+    padding-top: 4px;
+}
+table.createButtons td{
+    color: #C47C78;
+    font-size: 11px;
+    padding-left: 0px;
+    padding-right: 3px;
+    font-weight: bold;
+}
+/* Table for the gantt filter bar*/
+table.ganttbar {
+    font-size: 11px;
+    border: 4px;
+    border-width: 1px
+}
+/* Table column for the filter bar labels. The label color has to be blue */
+table.ganttbar td {
+    color: #006;
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+}
+
+
+/* Table for the header bar for filter screens*/
+table.selectbar {
+    background-color: #333366;
+    border: 1px;
+    border-width: 1px
+}
+table.selectbar td {
+    font-size: 11px;
+    color: #FFFFFF;
+    font-family: tahoma, geneva, arial, sans-serif;
+    text-align: center;
+    height: 22px;
+}
+/* bold, left */
+table.selectbar td.bl {
+    font-size: 11px;
+    color: #FFFFFF;
+    font-family: MS Sans Serif, tahoma, geneva, arial, sans-serif;
+    font-weight: bold;
+    text-align: left;
+    height: 22px;
+    padding-left: 4px;
+}
+
+table.list td.crewlist_0 {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+table.list td.crewlist_1 {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: bold;
+
+}
+table.list td.listitem_alert_0 {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : black;
+    background-color : #ffcccc
+}
+table.list td.listitem_alert_0_ongrey {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : black;
+    background-color : #ffcccc
+}
+table.list td.listitem_grey_0 {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : #808080;
+}
+table.list td.listitem_grey_0_ongrey {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : #808080;
+    background-color : #f0f0f0
+
+}
+table.list td.listitem_warn_0 {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : black;
+    background-color : #ffffcc
+}
+table.list td.listitem_warn_0_ongrey {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : black;
+    background-color : #ffffcc
+}
+table.list td.listitem_0 {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : black;
+}
+table.list td.listitem_0_ongrey {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 8px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color : black;
+    background-color : #f0f0f0
+
+}
+table.createflt01 {
+    background-color: #FFF;
+    color: #006;
+    font-size: 11px;
+    padding: 0px;
+    border-color: #336;
+    border-style: ridge;
+    border-width: 1px
+}
+
+table.createflt01 td {
+    font-size: 11px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 8px;
+    padding-bottom :8px;
+    text-align: center;
+
+}
+/* Table for error page */
+table.error {
+    background-color: #FFF;
+    border-color: #96A0AC;
+    border-style: ridge;
+    border-width: 1px
+}
+table.errorsub {
+    background-color: #D5DCEF;
+    border-width: 0px;
+}
+table.errorsub td.alert {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: bold;
+    text-align: center;
+    color: #013366;
+}
+table.errorsub td.msg {
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: regular;
+    text-align: center;
+    color: black;
+}
+/* Text Fileds */
+input.txt50 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:50px;
+}
+input.txt70 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:70px;
+}
+input.txt90 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:90px;
+}
+input.txt89 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:89px;
+}
+input.txt100 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:100px;
+}
+input.txt150 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:150px;
+}
+input.txt200 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:200px;
+}
+input.txt275 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:275px;
+}
+input.txt25 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:25px;
+}
+input.txt700 {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:700px;
+}
+input.txtscroll {
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+    font-family: Courier New, Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:700px;
+}
+input.txt50noborder {
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom:0;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    width:50px;
+    color: #336;
+    font-weight: bold;
+}
+input.txt800 {
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom:0;
+    padding-left: 20px;
+  	padding-bottom: 1px;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height: 18px;
+    width:350px;
+    color : #C00;
+    background-color: #EEE;
+}
+
+/* List */
+
+select {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height : 20px;
+}
+
+select.multiple {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height : 142px;
+}
+select.multiple70 {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height : 70px;
+}
+select.multiple50 {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height : 50px;
+}
+select.multiselect70 {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height : 70px;
+    width:150px;
+}
+select.multiple100 {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height :100px;
+}
+select.select160 {
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 11px;
+    height : 20px;
+    width:160px;
+}
+
+/* hidden select */
+.hid
+{
+    width: 5px;
+    visibility: hidden;
+}
+.error_msg
+{
+  padding-left: 20px;
+  padding-bottom: 1px;
+  font-family : Tahoma, Arial, sans-serif;
+  font-size : 11px;
+  color : #C00;
+}
+/*Updated/Created msg */
+.msg
+{
+  padding-left: 20px;
+  font-family : Tahoma, Arial, sans-serif;
+  font-size : 11px;
+  color : black;
+}
+/* Button */
+
+button {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 50px;
+}
+button.medium {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 75px;
+}
+.butmedium {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 75px;
+}
+.butlarge {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 100px;
+}
+.butsmall {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 50px;
+}
+
+.butextralarge {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 125px;
+}
+.butextracolor {
+    background-color: #336;
+    color: #888;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 125px;
+}
+.butoverlarge {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+    width: 175px;
+}
+.butfreesize {
+    background-color: #336;
+    color: #fff;
+    font-family:  MS Sans Serif, Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    height : 20px;
+}
+
+/* Text area */
+textarea{
+    font-family:Tahoma, Arial, sans-serif;
+    font-size:11px;
+    border-left: #888 1px solid;
+    border-top: #888 1px solid;
+    border-right: #888 1px solid;
+    border-bottom: #888 1px solid;
+}
+textarea.txtarea200 {
+    width: 200px;
+}
+
+textarea.txtarea300 {
+    width: 250px;
+    height:50px;
+    
+}
+
+textarea.txtarea343 {
+    width: 343px;
+    height: 200px;
+}
+
+textarea.txtarea400 {
+    width: 400px;
+    height: 200px;
+}
+
+/* Images */
+img {
+    border-style: none;
+}
+img.cal {
+    position:relative;
+    TOP: 4px;
+}
+img.bullet {
+    position:relative;
+    TOP: -1px;
+    height: 5px;
+    width: 9px;
+}
+/*Module name*/
+.modulename {
+font-family: MS Sans Serif, Tahoma, Arial, sans-serif;
+font-size:12px;
+color: #336;
+font-weight: bold;
+padding-left: 5px;
+text-align: center;
+height: 27px;
+}
+/* for crew list & departure arrival list*/
+.listitem_alert_0
+{
+  font-family : Tahoma, Arial, sans-serif;
+  font-size : 8pt;
+  color : black;
+  background : #ffcccc
+}
+
+div.child
+  {
+  display: none; 
+  }
+  div.headDiv{
+    color: #29295C;
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    font-weight: bold;
+    padding-left: 20px;
+	cursor: hand;
+  }
+
+/* Tabbed pane */  
+ 
+#tabsD {
+float:left;
+font-size:11px;;
+line-height:normal;
+font-family:tahoma;
+}
+#tabsD ul {
+margin:0;
+padding:5px 0px 0px;	 
+list-style:none;
+}
+#tabsD li {
+display:inline;
+margin:0;
+padding:0;
+}
+#tabsD a {
+float:left;
+background:url("../images/left_new.gif") no-repeat left top;
+margin-right:0px;
+padding:0 0 0 12px;
+text-decoration:none;
+}
+#tabsD a span {
+float:left;
+display:block;
+background:url("../images/right_cur.gif") no-repeat right top;
+padding:5px 23px 6px 8px;
+color:#fff;
+font-weight:bold;
+}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tabsD a span {float:none;}
+/* End IE5-Mac hack */
+#tabsD a:hover span {
+color:#1B5BA7;
+}
+#tabsD a:hover {
+background-position:0% -25px;
+
+}
+#tabsD a:active {
+background-position:0% -52px;
+}
+#tabsD a:hover span {
+background-position:100% -25px;
+color:#1B5BA7;
+}
+#tabsD a:active span {
+background-position:100% -52px;
+color:#1B5BA7;
+}
+#tabsD #current a {
+background-position:0% -52px;
+color:#1B5BA7;
+}
+#tabsD #current a span {
+background-position:100% -32px;
+}
+.alertStyle{
+	border-top-style: groove; 
+	border-top-color: #0000FF; 
+	border-top-width: 3px; 
+	border-right-style: groove; 
+	border-right-color: #0000FF; 
+	border-right-width: 3px; 
+	border-left-style: groove; 
+	border-left-color: #0000FF; 
+	border-left-width: 3px; 
+    height: 100%;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.fixedDiv{
+
+    overflow: hidden;
+    width: 170px;
+    height: 100px;
+	left:10px;
+    position:fixed;
+	_position:absolute;
+	bottom:10;
+	_top:expression(document.body.scrollTop+document.body.clientHeight-this.clientHeight-1);
+  	background:#357EC7;
+	display: none;
+}

@@ -1,0 +1,83 @@
+#:set omanair_blue (.33, .45, .58)
+#:set omanair_grey (.78, .78, .78)
+#:set omanair_gold (1, .72, .3)
+
+<WYOB_Label@Label>
+	color: (0, 0, 0, 1)
+	canvas.before:
+		Color:
+			rgb: omanair_grey
+		Rectangle:
+			pos: self.pos
+			size: self.size
+
+<GUI>:
+	orientation: "vertical"
+	BoxLayout:
+		size_hint_y: 0.2
+		WYOB_Label:
+			text: "WYOB v0.1 alpha"
+			canvas.before:
+				Color:
+					rgb: omanair_blue
+				Rectangle:
+					pos: self.pos
+					size: self.size
+		Button:
+			text: "Update!"
+			size_hint_x: 0.3
+			on_press: root.update()
+
+	BoxLayout:
+		size_hint_y: 0.15
+		WYOB_Label:
+			text: "Last updated:"
+			canvas.before:
+				Color:
+					rgb: omanair_gold
+				Rectangle:
+					pos: self.pos
+					size: self.size
+		WYOB_Label:
+			text: "Last update time..."
+	BoxLayout:
+		size_hint_y: 0.15
+		WYOB_Label:
+			text: "Next duty:"
+			canvas.before:
+				Color:
+					rgb: omanair_gold
+				Rectangle:
+					pos: self.pos
+					size: self.size
+		WYOB_Label:
+			text: "The next duty here..."
+
+	BoxLayout:
+		size_hint_y: 0.15
+		WYOB_Label:
+			text: "Reporting:"
+			canvas.before:
+				Color:
+					rgb: omanair_gold
+				Rectangle:
+					pos: self.pos
+					size: self.size
+		WYOB_Label:
+			text: "The next reporting here..."
+
+	WYOB_Label:
+		text: "Central widget"
+	WYOB_Label:
+		size_hint_y: 0.2
+		text: "Footer here..."
+		canvas.before:
+			Color:
+				rgb: omanair_gold
+			Rectangle:
+				pos: self.pos
+				size: self.size
+	WYOB_Label:
+		text: "An unofficial app to make IOB handy!"
+		italic: True
+		size_hint_y: 0.1

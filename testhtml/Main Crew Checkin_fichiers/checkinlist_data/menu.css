@@ -1,0 +1,95 @@
+a:link.menu {
+    border-left-color: #000000; border-bottom-color: #000000; color: #000000; border-top-color: #000000; font-family: tahoma, geneva, arial, sans-serif; text-decoration: none; border-right-color: #000000
+}
+a:hover.menu {
+    border-left-color: #000000; border-bottom-color: #000000; color: #000000; border-top-color: #000000; font-family: tahoma, geneva, arial, sans-serif; text-decoration: none; border-right-color: #000000
+}
+a:visited.menu {
+    border-left-color: #000000; border-bottom-color: #000000; color: #000000; border-top-color: #000000; font-family: tahoma, geneva, arial, sans-serif; text-decoration: none; border-right-color: #000000
+}
+a:hover.menu {
+    border-left-color: #000000; border-bottom-color: #000000; color: #000000; border-top-color: #000000; font-family: tahoma, geneva, arial, sans-serif; text-decoration: none; border-right-color: #000000
+}
+a:active.menu {
+    border-left-color: #000000; border-bottom-color: #000000; color: #000000; border-top-color: #000000; font-family: tahoma, geneva, arial, sans-serif; text-decoration: none; border-right-color: #000000
+}
+body {
+font-size: 11px;
+line-height: 14px;
+font-family: tahoma, geneva, arial, sans-serif;
+margin:0px;
+top: 0px;
+left:0px;
+}
+table {
+    font-size: 11px;
+    border: 0px;
+    padding: 0px;
+    border-collapse:collapse;
+}
+td {
+font-size: 11px; font-family: tahoma, geneva, arial, sans-serif;
+}
+table.menu {
+    height: 23px;
+    background-color: #336;
+    font-size: 11px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px;
+    border-collapse:collapse;
+}
+table.menu td {
+    color: #fff;
+    padding: 0px;
+    text-align: left;
+    font-family: MS Sans Serif, geneva, arial, sans-serif;
+    border-collapse:collapse;
+}
+.RollOver {
+     background-color: #2C7395;
+     border-bottom-width: 1px;
+     border-bottom-style: solid;
+     border-bottom-color: #ffffff;
+     border-top-width: 1px;
+     border-right-width: 1px;
+     border-left-width: 1px;
+     border-top-style: solid;
+     border-right-style: solid;
+     border-left-style: solid;
+     border-top-color: #ffffff;
+     border-right-color: #ffffff;
+     border-left-color: #ffffff;
+     font-family: MS Sans Serif, geneva, arial, sans-serif;
+     font-weight: bold;
+     text-align: center;
+     font-size: 11px;
+     cursor: default;
+}
+
+table.submenu td {
+    font-size: 11px;
+    height: 19px;
+    padding-left: 4px;
+    background-color: #E7E9EB;
+    color: #000;
+}
+table.submenu td.subRollOver {
+    font-size: 11px;
+    height: 19px;
+    padding-left: 4px;
+    background-color: #FFFFFF;
+    font-weight: regular;
+    cursor: hand;
+}
+table.user td {
+    height: 20px;
+    font-size: 11px;
+    line-height: 14px;
+    font-family: tahoma, geneva, arial, sans-serif;
+    text-align: left;
+    padding-left: 5px;
+    vertical-align: center;
+    border-collapse:collapse;
+}
