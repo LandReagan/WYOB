@@ -16,7 +16,7 @@ class IOBConnect:
         'mlt/filter.jsp?window=filter&loggedin=false'
     IOBURL_checkin_list = 'https://fltops.omanair.com/' +\
         'mlt/checkinlist.jsp'
-    duties_and_flights = []
+    duties = []
 
     def __init__(self, username=None, password=None):
         """
@@ -74,12 +74,15 @@ class IOBConnect:
             self.raw_duties.append(dict(zip(self._duty_parser.headers, duty)))
 
     def buildDutiesAndFlights(self):
+
         full_time_pattern = re.compile(
             r'\s*(\d{2}\w{3}\d{4})\s+?(\d{2}:\d{2})\s+?\((\d{2}:\d{2})\)\s*')
         leg_pattern = re.compile(r'\d')
-        airp_pattern = re.compile(r'\D{3}')
+        duty_pattern = re.compile(r'\S')
+        airport_pattern = re.compile(r'\D{3}')
+        trip_pattern = re.compile(r'\s*\w+\s*')
+
         for raw_duty in self.raw_duties:
-            print(raw_duty)
             # Start
             start_match = re.match(full_time_pattern, raw_duty['Start'])
             if start_match:
@@ -92,18 +95,36 @@ class IOBConnect:
                 end_time = self.getTimeFromMatch(end_match)
             else:
                 end_time = None
+            # Departure
+            departure_match = re.match(airport_pattern, raw_duty['From'])
+            if departure_match:
+                departure = departure_match.group(0)
+            else:
+                departure = ""
+            # Arrival
+            arrival_match = re.match(airport_pattern, raw_duty['To'])
+            if arrival_match:
+                arrival = arrival_match.group(0)
+            else:
+                arrival = ""
 
-            if re.fullmatch(leg_pattern, raw_duty['Leg']):
+            if re.match(leg_pattern, raw_duty['Leg']):
                 flight = Flight()
-                # TODO: Implement Flight class first!
-                self.duties_and_flights.append(flight)
-            elif raw_duty['Duty']:
+                flight.setStart(start_time)
+                flight.setEnd(end_time)
+                flight.departure = departure
+                flight.arrival = arrival
+                last_duty = self.duties[len(self.duties) - 1]
+                last_duty.flights.append(flight)
+
+            elif (re.match(duty_pattern, raw_duty['Duty']) or
+                  re.match(trip_pattern, raw_duty['Trip'])):
                 duty = Duty()
-                if duty.setNatureFromIOBCodes(raw_duty['Trip']):
-                    duty.setStart(start_time)
-                    duty.setEnd(end_time)
-                    self.duties_and_flights.append(duty)
-                print(duty)
+                if not duty.setNatureFromIOBCodes(raw_duty['Trip']):
+                    duty.nature = 'FLIGHT'
+                duty.setStart(start_time)
+                duty.setEnd(end_time)
+                self.duties.append(duty)
 
     def getTimeFromMatch(self, match):
         raw_date_format = "%d%b%Y"
@@ -151,3 +172,5 @@ if __name__ == '__main__':
             text = file.read()
     iobconnect.parseDuties(text)
     iobconnect.buildDutiesAndFlights()
+    for duty in iobconnect.duties:
+        print(duty)

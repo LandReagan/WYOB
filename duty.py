@@ -33,13 +33,14 @@ class Duty:
 
     def __str__(self):
         result = (
-            "NATURE: {}|START: {}|END: {}|DURATION: {}|DEP: {}|ARR {}|\n"
+            "NATURE: {}|START: {}|END: {}|DURATION: {}|DEP: {}|ARR: {}|"
             .format(self.nature,
                     self.start.strftime(datetime_format) if self.start else "",
                     self.end.strftime(datetime_format) if self.end else "",
                     self.durationString,
-                    self.departure, self.arrival)
-        )
+                    self.departure, self.arrival))
+        for flight in self.flights:
+            result += '\n' + str(flight)
         return result
 
     # PROPERTIES
