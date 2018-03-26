@@ -1,5 +1,6 @@
 import requests
 import re
+import json
 import datetime
 
 from parsers import TokenParser, DutyParser
@@ -172,5 +173,9 @@ if __name__ == '__main__':
             text = file.read()
     iobconnect.parseDuties(text)
     iobconnect.buildDutiesAndFlights()
-    for duty in iobconnect.duties:
-        print(duty)
+
+    with open("test.txt", 'w') as file:
+        duties_list = []
+        for duty in iobconnect.duties:
+            duties_list.append(duty.asDict())
+        json.dump(duties_list, file, indent=2)

@@ -21,6 +21,17 @@ class Flight:
                     self.durationString, self.departure, self.arrival))
         return result
 
+    def asDict(self):
+        return {
+            "flight_number": self.flight_number,
+            "start": (self.start.strftime(datetime_format)
+                      if self.start else ""),
+            "end": self.end.strftime(datetime_format) if self.end else "",
+            "duration": self.durationString,
+            "departure": self.departure,
+            "arrival": self.arrival
+        }
+
     def setStart(self, start_time):
         self.start = start_time
         if self.end:

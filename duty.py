@@ -29,7 +29,7 @@ class Duty:
 
         self.flights = []
 
-        self.rest = None
+        self.rest = None  # TODO!
 
     def __str__(self):
         result = (
@@ -42,6 +42,22 @@ class Duty:
         for flight in self.flights:
             result += '\n' + str(flight)
         return result
+
+    def asDict(self):
+        # returns a jsonizable dict
+        flight_list = []
+        for flight in self.flights:
+            flight_list.append(flight.asDict())
+        return {
+            "nature": self.nature,
+            "start": (self.start.strftime(datetime_format)
+                      if self.start else ""),
+            "end": self.end.strftime(datetime_format) if self.end else "",
+            "duration": self.durationString,
+            "departure": self.departure,
+            "arrival": self.arrival,
+            "flights:": flight_list
+        }
 
     # PROPERTIES
     @property
