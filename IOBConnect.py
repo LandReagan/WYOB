@@ -3,6 +3,7 @@ import re
 import json
 import datetime
 
+import logger
 from parsers import TokenParser, DutyParser
 from WYOB_error import WYOBError
 from duty import Duty
@@ -10,9 +11,9 @@ from flight import Flight
 
 
 class IOBConnect:
-    """ This class connects to IOB system and handle requests iot fetch
-        data. This include planned and completed flights.
+    """ This class connects to IOB system and handle requests.
     """
+
     IOBURL_login_filter = 'https://fltops.omanair.com/' +\
         'mlt/filter.jsp?window=filter&loggedin=false'
     IOBURL_checkin_list = 'https://fltops.omanair.com/' +\
@@ -20,7 +21,7 @@ class IOBConnect:
     duties = []
 
     def __init__(self, username=None, password=None):
-        """
+        """ Gets username and password and initialize attributes
         """
         self._username = username
         self._password = password
@@ -28,6 +29,21 @@ class IOBConnect:
         self._token_parser = TokenParser()
         self._duty_parser = DutyParser()
         self.raw_duties = []
+
+    def run(self):
+        text = None
+        try:
+            self.connect()
+            text = self.getCheckinList()
+        except Exception as e:
+            logger.logI('Connection failed!')
+
+        if text:
+            self.parseDuties(text)
+            self.buildDutiesAndFlights()
+            return self.writeToFile()
+        else:
+            return None
 
     def connect(self):
         """ create session and log in.
@@ -40,9 +56,7 @@ class IOBConnect:
                 'Couldn\'t connect to IOB due to invalid ' +
                 'username and/or password'
             )
-
         self._session = requests.session()
-        req = None
         # 2. Trying to connect to IOB website and parsing the answer
         try:
             req = self._session.get(self.IOBURL_login_filter)
@@ -63,7 +77,7 @@ class IOBConnect:
         }
 
         # 5. Log in
-        req = self._session.post(self._token_parser.new_URL, data=values)
+        self._session.post(self._token_parser.new_URL, data=values)
 
     def getCheckinList(self):
         req = self._session.get(self.IOBURL_checkin_list)
@@ -75,7 +89,9 @@ class IOBConnect:
             self.raw_duties.append(dict(zip(self._duty_parser.headers, duty)))
 
     def buildDutiesAndFlights(self):
-
+        """
+        Parses the raw strings to extract Duty and Flight instances
+        """
         full_time_pattern = re.compile(
             r'\s*(\d{2}\w{3}\d{4})\s+?(\d{2}:\d{2})\s+?\((\d{2}:\d{2})\)\s*')
         leg_pattern = re.compile(r'\d')
@@ -127,7 +143,30 @@ class IOBConnect:
                 duty.setEnd(end_time)
                 self.duties.append(duty)
 
+    def writeToFile(self, file='lastLoad.json'):
+        """
+        Gets an optional JSON file name as parameter. If there is no file name,
+        fileDetermine() is called (automatic duties file update)
+        :param file: optional file name
+        :return file: the file where fresh JSON data has been written
+        """
+        try:
+            with open(file, 'w') as file_stream:
+                duties_dict_list = [
+                    duty.asDict() for duty in self.duties
+                ]
+                json.dump(duties_dict_list, file, indent=2)
+                return file_stream
+        except OSError as e:
+            raise WYOBError("In IOBConnect.writeToFile:\nFile: " + file +
+                            " could not be opened. Reported error: " + str(e))
+
     def getTimeFromMatch(self, match):
+        """
+        Build a datetime object to fully determine the match string
+        :param match: a returned "match object" string
+        :return: a datetime object, with correct time and timezone
+        """
         raw_date_format = "%d%b%Y"
         raw_time_format = "%H:%M"
         raw_start_local_date = match.group(1)
@@ -154,8 +193,7 @@ class IOBConnect:
             # print(gmt_diff)
             return utc_datetime
         except Exception:
-            WYOBError('Error setting up the date from IOB.')
-            raise
+            raise WYOBError('Error setting up the date from IOB.')
 
 
 if __name__ == '__main__':
@@ -163,7 +201,7 @@ if __name__ == '__main__':
     iobconnect = IOBConnect(username='93429', password='93429')
     text = ''
     try:
-        raise Exception()  # Clear that line to try online
+        # raise Exception()  # Clear that line to try online
         print("Trying to connect...")
         iobconnect.connect()
         text = iobconnect.getCheckinList()
@@ -171,6 +209,7 @@ if __name__ == '__main__':
         print('Test mode with no connection...')
         with open('./testhtml/checkinlist.htm') as file:
             text = file.read()
+
     iobconnect.parseDuties(text)
     iobconnect.buildDutiesAndFlights()
 
