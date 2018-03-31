@@ -1,4 +1,6 @@
-datetime_format = "%Y-%m-%d %H:%M%z"
+from datetime import datetime
+
+datetime_format = "%Y-%m-%d %H:%M"
 
 
 class Flight:
@@ -14,7 +16,7 @@ class Flight:
 
     def __str__(self):
         result = (
-            "FLIGHT NUMBER: {}|START: {}|END: {}|DURATION: {}|DEP: {}|ARR: {}|"
+            "**FLIGHT**|FLIGHT NUMBER: {}|START: {}|END: {}|DURATION: {}|DEP: {}|ARR: {}|"
             .format(self.flight_number,
                     self.start.strftime(datetime_format) if self.start else "",
                     self.end.strftime(datetime_format) if self.end else "",
@@ -31,6 +33,17 @@ class Flight:
             "departure": self.departure,
             "arrival": self.arrival
         }
+
+    def fromDict(self, data):
+        """
+        Populate Flight attributes from a relevant JSON object
+        :param data: JSON object representing a Flight
+        """
+        self.flight_number = data['flight_number']
+        self.setStart(datetime.strptime(data['start'], datetime_format))
+        self.setEnd(datetime.strptime(data['end'], datetime_format))
+        self.departure = data['departure']
+        self.arrival = data['arrival']
 
     def setStart(self, start_time):
         self.start = start_time

@@ -5,16 +5,24 @@ from kivy.properties import StringProperty
 from kivy.clock import Clock
 from kivy.lang import Builder
 
+from logger import logI
+from controller import Controller
+
 Builder.load_file("gui.kv")
 
 
 class GUI(BoxLayout):
 
     clock = StringProperty("XX:XX GMT")
+    last_updated = StringProperty("?")
+    next_duty = StringProperty("?")
+    next_reporting = StringProperty("?")
 
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
         self.clockSetUp()
+        self.controller = Controller()
+        self.update()
 
     def clockSetUp(self):
         Clock.schedule_interval(self.clockUpdate, 0.2)
@@ -23,4 +31,10 @@ class GUI(BoxLayout):
         self.clock = datetime.utcnow().strftime('%H:%M:%S GMT')
 
     def update(self):
-        print("Update!")
+        logI("Update!")
+        update_data = self.controller.update()
+        self.last_updated = update_data['last_updated']
+        self.next_duty = update_data['next_duty']
+        self.next_reporting = update_data['next_reporting']
+
+

@@ -7,7 +7,7 @@ import re
 from WYOB_error import WYOBError
 from flight import Flight
 
-datetime_format = "%Y-%m-%d %H:%M%z"
+datetime_format = "%Y-%m-%d %H:%M"
 
 
 class Duty:
@@ -33,7 +33,7 @@ class Duty:
 
     def __str__(self):
         result = (
-            "NATURE: {}|START: {}|END: {}|DURATION: {}|DEP: {}|ARR: {}|"
+            "***DUTY***|NATURE: {}|START: {}|END: {}|DURATION: {}|DEP: {}|ARR: {}|"
             .format(self.nature,
                     self.start.strftime(datetime_format) if self.start else "",
                     self.end.strftime(datetime_format) if self.end else "",
@@ -44,7 +44,7 @@ class Duty:
         return result
 
     def asDict(self):
-        # returns a jsonizable dict
+        # returns a jsonable dict
         flight_list = []
         for flight in self.flights:
             flight_list.append(flight.asDict())
@@ -56,8 +56,23 @@ class Duty:
             "duration": self.durationString,
             "departure": self.departure,
             "arrival": self.arrival,
-            "flights:": flight_list
+            "flights": flight_list
         }
+
+    def fromDict(self, data):
+        """
+        Takes a JSON object as parameter and populate attributes
+        :param data: JSON object representing a duty
+        """
+        self.nature = data['nature']
+        self.setStart(datetime.strptime(data['start'], datetime_format))
+        self.setEnd(datetime.strptime(data['end'], datetime_format))
+        self.departure = data['departure']
+        self.arrival = data['arrival']
+        for raw_flight in data['flights']:
+            flight = Flight()
+            flight.fromDict(raw_flight)
+            self.addFlight(flight)
 
     # PROPERTIES
     @property
@@ -74,7 +89,9 @@ class Duty:
     # PUBLIC METHODS
     def addFlight(self, flight):
         if type(flight) == Flight:
-            self.flights.add(flight)
+            self.flights.append(flight)
+            self.departure = self.flights[0].departure
+            self.arrival = flight.arrival
         else:
             raise WYOBError(
                 "Flight.addFlight called with wrong object type! Object: " +
@@ -97,12 +114,18 @@ class Duty:
         return True
 
     def setStart(self, start_time):
-        self.start = start_time
+        if isinstance(start_time, datetime):
+            self.start = start_time
+        else:
+            raise WYOBError("Duty.setStart wrong type!")
         if self.end:
             self.updateDuration()
 
     def setEnd(self, end_time):
-        self.end = end_time
+        if isinstance(end_time, datetime):
+            self.end = end_time
+        else:
+            raise WYOBError("Duty.setEnd wrong type!")
         if self.start:
             self.updateDuration()
 

@@ -40,7 +40,7 @@
 					pos: self.pos
 					size: self.size
 		WYOB_Label:
-			text: "Last update time..."
+			text: root.last_updated
 	BoxLayout:
 		size_hint_y: 0.15
 		WYOB_Label:
@@ -52,7 +52,7 @@
 					pos: self.pos
 					size: self.size
 		WYOB_Label:
-			text: "The next duty here..."
+			text: root.next_duty
 
 	BoxLayout:
 		size_hint_y: 0.15
@@ -65,7 +65,7 @@
 					pos: self.pos
 					size: self.size
 		WYOB_Label:
-			text: "The next reporting here..."
+			text: root.next_reporting
 
 	WYOB_Label:
 		text: "Central widget"

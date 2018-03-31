@@ -3,7 +3,6 @@ import re
 import json
 import datetime
 
-import logger
 from parsers import TokenParser, DutyParser
 from WYOB_error import WYOBError
 from duty import Duty
@@ -36,7 +35,7 @@ class IOBConnect:
             self.connect()
             text = self.getCheckinList()
         except Exception as e:
-            logger.logI('Connection failed!')
+            raise WYOBError("Connection failed!")
 
         if text:
             self.parseDuties(text)
@@ -155,11 +154,11 @@ class IOBConnect:
                 duties_dict_list = [
                     duty.asDict() for duty in self.duties
                 ]
-                json.dump(duties_dict_list, file, indent=2)
-                return file_stream
+                json.dump(duties_dict_list, file_stream, indent=2) # TODO: Debugg
         except OSError as e:
             raise WYOBError("In IOBConnect.writeToFile:\nFile: " + file +
                             " could not be opened. Reported error: " + str(e))
+        return file
 
     def getTimeFromMatch(self, match):
         """
