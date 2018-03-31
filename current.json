@@ -1,0 +1,263 @@
+[
+  {
+    "nature": "FLIGHT",
+    "start": "2018-04-05 08:35",
+    "end": "2018-04-05 17:30",
+    "duration": "08:55",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-05 10:05",
+        "end": "2017-04-05 17:00",
+        "duration": "06:55",
+        "departure": "MCT",
+        "arrival": "MUC"
+      }
+    ]
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-06 18:30",
+    "end": "2017-04-07 02:50",
+    "duration": "08:20",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-06 19:45",
+        "end": "2017-04-07 02:20",
+        "duration": "06:35",
+        "departure": "MUC",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-07 20:00",
+    "end": "2017-04-08 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "STANDBY",
+    "start": "2017-04-09 02:00",
+    "end": "2017-04-09 14:00",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-10 03:25",
+    "end": "2017-04-10 12:35",
+    "duration": "09:10",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-10 04:55",
+        "end": "2017-04-10 12:05",
+        "duration": "07:10",
+        "departure": "MCT",
+        "arrival": "KUL"
+      }
+    ]
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-11 12:20",
+    "end": "2017-04-11 20:50",
+    "duration": "08:30",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-11 13:35",
+        "end": "2017-04-11 20:20",
+        "duration": "06:45",
+        "departure": "KUL",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  {
+    "nature": "STANDBY",
+    "start": "2017-04-13 02:00",
+    "end": "2017-04-13 14:00",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-13 20:00",
+    "end": "2017-04-14 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-14 20:00",
+    "end": "2017-04-15 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-15 20:00",
+    "end": "2017-04-16 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-17 19:50",
+    "end": "2017-04-18 06:00",
+    "duration": "10:10",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-17 21:20",
+        "end": "2017-04-18 05:30",
+        "duration": "08:10",
+        "departure": "MCT",
+        "arrival": "LHR"
+      }
+    ]
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-19 06:25",
+    "end": "2017-04-19 15:30",
+    "duration": "09:05",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-19 07:25",
+        "end": "2017-04-19 15:00",
+        "duration": "07:35",
+        "departure": "LHR",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-19 20:00",
+    "end": "2017-04-20 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "STANDBY",
+    "start": "2017-04-21 14:00",
+    "end": "2017-04-22 02:00",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "STANDBY",
+    "start": "2017-04-22 14:00",
+    "end": "2017-04-23 02:00",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-24 08:55",
+    "end": "2017-04-24 18:05",
+    "duration": "09:10",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-24 10:25",
+        "end": "2017-04-24 17:35",
+        "duration": "07:10",
+        "departure": "MCT",
+        "arrival": "MXP"
+      }
+    ]
+  },
+  {
+    "nature": "FLIGHT",
+    "start": "2017-04-25 19:00",
+    "end": "2017-04-26 03:20",
+    "duration": "08:20",
+    "departure": null,
+    "arrival": null,
+    "flights": [
+      {
+        "flight_number": null,
+        "start": "2017-04-25 20:15",
+        "end": "2017-04-26 02:50",
+        "duration": "06:35",
+        "departure": "MXP",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-26 20:00",
+    "end": "2017-04-27 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-27 20:00",
+    "end": "2017-04-28 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "OFF",
+    "start": "2017-04-28 20:00",
+    "end": "2017-04-29 19:59",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  {
+    "nature": "STANDBY",
+    "start": "2017-04-30 02:00",
+    "end": "2017-04-30 14:00",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  }
+]
