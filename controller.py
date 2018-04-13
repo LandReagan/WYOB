@@ -1,18 +1,21 @@
 import json
 from datetime import datetime
+import os
 
-from logger import logI
+from logger import logI, logE
 from WYOB_error import WYOBError
 from IOBConnect import IOBConnect
 from duty import Duty
+from database import Database
 
-datetime_format = "%Y-%m-%d %H:%M"
+datetime_format = "%Y-%m-%d %H:%M"git
 
 
 class Controller:
 
     current_file = "current.json"
     duties = []
+    database = Database()
 
     def update(self):
         self.updateFromIOB()
@@ -29,18 +32,22 @@ class Controller:
         iobconnector = IOBConnect('93429', '93429')
         try:
             file = iobconnector.run()
-            # TODO: copy file into current_file
+            # TODO: put some conditions before overwritting "current.json"
+            os.rename(file, self.current_file)
         except WYOBError as error:
             logI("Unable to connect, continuing offline...")
-        self.loadDutiesFromJson()
+        try:
+            self.loadDutiesFromJson()
+        except WYOBError as e:
+            logE("Controller.updateFromIOB failed at JSON file loading.")
 
     def getLastUpdated(self):
         return "???"
 
     def getNextDuty(self):
-        now = datetime.utcnow()
+        now = datetime.utcnow().astimezone()
         for duty in self.duties:
-            if duty.start > now:
+            if duty.start > now and duty.nature != 'OFF':
                 return duty
         return None
 
@@ -49,6 +56,7 @@ class Controller:
         if not duty:
             return "UNKNOWN"
         if duty.nature == "FLIGHT":
+            print(duty)
             result = duty.flights[0].departure
             for flight in duty.flights:
                 result += " - " + flight.arrival
