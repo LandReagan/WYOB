@@ -8,7 +8,7 @@ from IOBConnect import IOBConnect
 from duty import Duty
 from database import Database
 
-datetime_format = "%Y-%m-%d %H:%M"git
+datetime_format = "%Y-%m-%d %H:%M"
 
 
 class Controller:
