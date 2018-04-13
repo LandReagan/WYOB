@@ -30,6 +30,11 @@ class IOBConnect:
         self.raw_duties = []
 
     def run(self):
+        """
+        This method connects and fetch the page, parse raw duties then create
+        duties and write the corresponding JSON file 'lastLoad.json'.
+        :return:
+        """
         text = None
         try:
             self.connect()
@@ -126,12 +131,13 @@ class IOBConnect:
 
             if re.match(leg_pattern, raw_duty['Leg']):
                 flight = Flight()
+                flight.flight_number = raw_duty['Flight']
                 flight.setStart(start_time)
                 flight.setEnd(end_time)
                 flight.departure = departure
                 flight.arrival = arrival
                 last_duty = self.duties[len(self.duties) - 1]
-                last_duty.flights.append(flight)
+                last_duty.addFlight(flight)
 
             elif (re.match(duty_pattern, raw_duty['Duty']) or
                   re.match(trip_pattern, raw_duty['Trip'])):
@@ -145,7 +151,7 @@ class IOBConnect:
     def writeToFile(self, file='lastLoad.json'):
         """
         Gets an optional JSON file name as parameter. If there is no file name,
-        fileDetermine() is called (automatic duties file update)
+        data is written in "lastLoad.json"
         :param file: optional file name
         :return file: the file where fresh JSON data has been written
         """
@@ -154,7 +160,7 @@ class IOBConnect:
                 duties_dict_list = [
                     duty.asDict() for duty in self.duties
                 ]
-                json.dump(duties_dict_list, file_stream, indent=2) # TODO: Debugg
+                json.dump(duties_dict_list, file_stream, indent=2) # TODO: Debug
         except OSError as e:
             raise WYOBError("In IOBConnect.writeToFile:\nFile: " + file +
                             " could not be opened. Reported error: " + str(e))
@@ -162,7 +168,7 @@ class IOBConnect:
 
     def getTimeFromMatch(self, match):
         """
-        Build a datetime object to fully determine the match string
+        Build a timezone aware datetime object to fully determine the match string
         :param match: a returned "match object" string
         :return: a datetime object, with correct time and timezone
         """
@@ -188,9 +194,10 @@ class IOBConnect:
             if (local_datetime - utc_datetime >
                     datetime.timedelta(hours=12)):
                 utc_datetime += datetime.timedelta(days=1)
-            # gmt_diff = datetime.timezone(local_datetime - utc_datetime)
-            # print(gmt_diff)
-            return utc_datetime
+            gmt_diff = local_datetime - utc_datetime
+            zone = datetime.timezone(gmt_diff)
+            aware_local_datetime = local_datetime.astimezone(zone)
+            return aware_local_datetime
         except Exception:
             raise WYOBError('Error setting up the date from IOB.')
 

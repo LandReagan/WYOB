@@ -69,15 +69,28 @@
 
 	WYOB_Label:
 		text: "Central widget"
-	WYOB_Label:
-		size_hint_y: 0.2
-		text: root.clock
-		canvas.before:
-			Color:
-				rgb: omanair_gold
-			Rectangle:
-				pos: self.pos
-				size: self.size
+
+	BoxLayout:
+	    size_hint_y: 0.1
+	    orientation: "horizontal"
+
+        WYOB_Label:
+            text: root.utc_clock
+            canvas.before:
+                Color:
+                    rgb: omanair_gold
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        WYOB_Label:
+            text: root.loc_clock
+            canvas.before:
+                Color:
+                    rgb: omanair_gold
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
 	WYOB_Label:
 		text: "An unofficial app to make IOB handy!"
 		italic: True

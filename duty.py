@@ -7,7 +7,7 @@ import re
 from WYOB_error import WYOBError
 from flight import Flight
 
-datetime_format = "%Y-%m-%d %H:%M"
+datetime_format = "%Y-%m-%d %H:%M %z"
 
 
 class Duty:
@@ -50,8 +50,7 @@ class Duty:
             flight_list.append(flight.asDict())
         return {
             "nature": self.nature,
-            "start": (self.start.strftime(datetime_format)
-                      if self.start else ""),
+            "start": self.start.strftime(datetime_format) if self.start else "",
             "end": self.end.strftime(datetime_format) if self.end else "",
             "duration": self.durationString,
             "departure": self.departure,
@@ -105,7 +104,8 @@ class Duty:
         flight_pattern = re.compile('\d{3}-\d{2}')
         if aString.count('OFF') > 0:
             self.nature = 'OFF'
-        elif aString.count('HS-AM') > 0 or aString.count('HS-PM') > 0:  # TODO!
+        elif (aString.count('HS-AM') > 0 or aString.count('HS-PM') > 0 or
+              aString.count('HS2') > 0):  # TODO!
             self.nature = 'STANDBY'
         elif re.match(flight_pattern, aString) is not None:
             self.nature = 'FLIGHT'

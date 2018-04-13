@@ -1,6 +1,6 @@
 from datetime import datetime
 
-datetime_format = "%Y-%m-%d %H:%M"
+datetime_format = "%Y-%m-%d %H:%M %z"
 
 
 class Flight:

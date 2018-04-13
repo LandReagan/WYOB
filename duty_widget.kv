@@ -1,14 +1,44 @@
+#:set omanair_grey (.78, .78, .78)
+
+<DutyWidgetLabel@Label>
+    color: (0, 0, 0, 1)
+    text_size: self.size
+    halign: 'center'
+    valign: 'center'
+    canvas.before:
+        Color:
+            rgb: omanair_grey
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 <DutyWidget>:
     orientation: "horizontal"
-    Label:
-        text: root.date
-    Label:
-        text: root.nature
-    Label:
-        text: root.departure
-    Label:
-        text: root.departure_time
-    Label:
-        text: root.arrival
-    Label:
-        text: root.arrival_time
+    BoxLayout:
+        orientation: "vertical"
+        DutyWidgetLabel:
+            valign: 'bottom'
+            text: root.date
+        DutyWidgetLabel:
+            valign: 'top'
+            text: root.nature
+    BoxLayout:
+        orientation: "vertical"
+        DutyWidgetLabel:
+            valign: 'bottom'
+            text: root.departure_time_local
+        DutyWidgetLabel:
+            valign: 'top'
+            italic: True
+            text: root.departure_time_utc
+    DutyWidgetLabel:
+        text: root.legs
+    BoxLayout:
+        orientation: "vertical"
+        DutyWidgetLabel:
+            valign: 'bottom'
+            text: root.arrival_time_local
+        DutyWidgetLabel:
+            valign: 'top'
+            italic: True
+            text: root.arrival_time_utc

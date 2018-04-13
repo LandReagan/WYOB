@@ -27,7 +27,7 @@ class TokenParser(HTMLParser):
 class DutyParser(HTMLParser):
     """ This class is intended to parse the table output of checkinlist.jsp
         It will find the <body>, then get the table headers as tuple,
-        and finaly populate a list with duites as tuples (same size as
+        and finally populate a list with duties as tuples (same size as
         headers)
     """
     headers = []

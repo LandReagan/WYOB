@@ -13,7 +13,8 @@ Builder.load_file("gui.kv")
 
 class GUI(BoxLayout):
 
-    clock = StringProperty("XX:XX GMT")
+    utc_clock = StringProperty("HH:MM GMT")
+    loc_clock = StringProperty("HH:MM LOC")
     last_updated = StringProperty("?")
     next_duty = StringProperty("?")
     next_reporting = StringProperty("?")
@@ -22,13 +23,13 @@ class GUI(BoxLayout):
         BoxLayout.__init__(self, **kwargs)
         self.clockSetUp()
         self.controller = Controller()
-        self.update()
 
     def clockSetUp(self):
         Clock.schedule_interval(self.clockUpdate, 0.2)
 
     def clockUpdate(self, dt):
-        self.clock = datetime.utcnow().strftime('%H:%M:%S GMT')
+        self.utc_clock = datetime.utcnow().strftime('%H:%M:%S GMT')
+        self.loc_clock = datetime.now().strftime('%H:%M:%S LOC')
 
     def update(self):
         logI("Update!")

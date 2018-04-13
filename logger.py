@@ -9,7 +9,7 @@ LEVEL = logging.DEBUG
 # Initializing:
 logger = logging.getLogger('this_logger')
 logger.setLevel(LEVEL)
-formatter = logging.Formatter('[%(levelname)s] %(asctime)s - %(message)s')
+formatter = logging.Formatter('[WYOB %(levelname)s] %(asctime)s - %(message)s')
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
