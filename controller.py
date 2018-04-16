@@ -27,20 +27,6 @@ class Controller:
         }
         return update_data
 
-    def updateFromIOB(self):
-        logI("Updating from IOB...")
-        iobconnector = IOBConnect('93429', '93429')
-        try:
-            file = iobconnector.run()
-            # TODO: put some conditions before overwritting "current.json"
-            os.rename(file, self.current_file)
-        except WYOBError as error:
-            logI("Unable to connect, continuing offline...")
-        try:
-            self.loadDutiesFromJson()
-        except WYOBError as e:
-            logE("Controller.updateFromIOB failed at JSON file loading.")
-
     def getLastUpdated(self):
         return "???"
 

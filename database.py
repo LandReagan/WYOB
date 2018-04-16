@@ -22,4 +22,11 @@ class Database:
         pass
 
     def getIOBFile(self):
-        pass
+        logI("Updating from IOB...")
+        iobconnector = IOBConnect('93429', '93429')
+        try:
+            file = iobconnector.run()
+            return file
+        except WYOBError as error:
+            logI("Unable to connect, continuing offline...")
+            return None
