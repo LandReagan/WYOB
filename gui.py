@@ -37,5 +37,3 @@ class GUI(BoxLayout):
         self.last_updated = update_data['last_updated']
         self.next_duty = update_data['next_duty']
         self.next_reporting = update_data['next_reporting']
-
-

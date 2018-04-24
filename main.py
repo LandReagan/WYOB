@@ -2,4 +2,5 @@
 
 from WYOB import WYOB
 
-WYOB().run()
+app = WYOB()
+app.run()

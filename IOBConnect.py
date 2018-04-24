@@ -45,7 +45,7 @@ class IOBConnect:
         if text:
             self.parseDuties(text)
             self.buildDutiesAndFlights()
-            return self.writeToFile()
+            return self.duties
         else:
             return None
 

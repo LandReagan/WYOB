@@ -8,6 +8,7 @@ from WYOB_error import WYOBError
 from flight import Flight
 
 datetime_format = "%Y-%m-%d %H:%M %z"
+key_datetime_format = "%Y%m%d%H%M"
 
 
 class Duty:
@@ -84,6 +85,15 @@ class Duty:
                 self.departure is None):
             return False
         return True
+
+    @property
+    def key(self):
+        return (
+            "{}_{}_{}_{}_{}"
+            .format(self.nature,
+                self.start.strftime(key_datetime_format) if self.start else "?",
+                self.end.strftime(key_datetime_format) if self.end else "?",
+                self.departure, self.arrival))
 
     # PUBLIC METHODS
     def addFlight(self, flight):
@@ -166,6 +176,7 @@ if __name__ == '__main__':
     duty.updateDuration()
     duty.departure = 'CDG'
     print(duty)
+    print(duty.key)
     if duty.isValid:
         print("PASSED isValid returned true for a correct duty")
     else:
