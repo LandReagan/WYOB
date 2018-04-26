@@ -1,10 +1,7 @@
 import json
 from datetime import datetime
-import os
 
-from logger import logI, logE
 from WYOB_error import WYOBError
-from IOBConnect import IOBConnect
 from duty import Duty
 from database import Database
 
@@ -13,12 +10,12 @@ datetime_format = "%Y-%m-%d %H:%M"
 
 class Controller:
 
-    current_file = "current.json"
     duties = []
     database = Database()
 
     def update(self):
-        self.updateFromIOB()
+        self.database.updateFromIOB()
+        self.duties = self.database.getDuties()
         # TODO: last updated feature (App state file?)
         update_data = {
             "last_updated": self.getLastUpdated(),
@@ -56,9 +53,9 @@ class Controller:
             return "UNKNOWN"
         return duty.start.strftime(datetime_format)
 
-    def loadDutiesFromJson(self):
+    def loadDutiesFromJson(self, file):
         try:
-            with open(self.current_file, 'r') as file:
+            with open(file, 'r') as file:
                 try:
                     raw_duties_list = json.load(file)
                     for raw_duty in raw_duties_list:
@@ -68,15 +65,15 @@ class Controller:
                 except json.JSONDecodeError as error:
                     raise WYOBError(
                         "Error while decoding current JSON file: " +
-                        self.current_file + ". Error sent from JSON: " +
+                        str(file) + ". Error sent from JSON: " +
                         str(error.msg))
         except OSError as error:
-            raise WYOBError("Error trying to open " + str(self.current_file) +
+            raise WYOBError("Error trying to open " + str(file) +
                             ". Error from system: " + str(error))
 
 
 if __name__ == "__main__":
 
     controller = Controller()
-    controller.updateFromIOB()
+    controller.update()
 

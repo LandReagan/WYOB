@@ -26,8 +26,7 @@ class Database:
         pass
 
     def getDuties(self, start_date=None, end_date=None):
-        """ ASYNCHRONOUS !
-            getter for duties in the database, from datetime to datetime.
+        """ Getter for duties in the database, from datetime to datetime.
             If related parameter is missing, it will take all possible duties.
         """
         duties = []
@@ -35,22 +34,21 @@ class Database:
 
         for key in self.storage:
             duty = Duty()
-            duty.asDict(self.storage[key])
-            if ((duty.start >= start_date or start_date is None) and
-                    (duty.end <= end_date or end_date is None)):
+            duty.fromDict(self.storage[key])
+            if ((start_date is None or duty.start >= start_date) and
+                    (end_date is None or duty.end <= end_date)):
                 duties.append(duty)
 
         self._disconnectStorage()
         return duties
 
     def updateDuties(self, duties):
-        """ ASYNCHRONOUS !
-            Setter for duties in the database. Overlapping duties (in time
+        """ Setter for duties in the database. Overlapping duties (in time
             period) are overwritten.
         """
         self._connectStorage()
 
-        if len(duties) > 0:
+        if duties and len(duties) > 0:
             startPeriod = duties[0].start
             endPeriod = duties[len(duties) - 1].end
         else:
@@ -59,28 +57,36 @@ class Database:
         # Erase updated duties:
         for key in self.storage.keys():
             duty = Duty()
-            duty.fromDict(self.storage.get(key))
-            if duty.start >= startPeriod and duty.end <= endPeriod:
-                self.storage.delete(key)
+            rawData = self.storage[key]
+            if rawData:
+                duty.fromDict(rawData)
+                if duty.start >= startPeriod and duty.end <= endPeriod:
+                    del self.storage[key]
 
         # Write updated duties:
         for duty in duties:
-            self.storage.put(duty.key, duty.asDict())
+            self.storage[duty.key] = duty.asDict()
 
         self._disconnectStorage()
 
+    def updateFromIOB(self):
+        duties = self._getIOBDuties()
+        self.updateDuties(duties)
 
-    def getIOBFile(self):
+    # PRIVATE METHODS
+    def _getIOBDuties(self):
+        """ Use the connector to get duties from IOB system
+        :return: [duties] a list of duties from IOB, or None in case of failure
+        """
         logI("Updating from IOB...")
         iobconnector = IOBConnect('93429', '93429')
         try:
-            file = iobconnector.run()
-            return file
+            duties = iobconnector.run()
+            return duties
         except WYOBError:
             logI("Unable to connect, continuing offline...")
             return None
 
-    # PRIVATE METHODS
     def _connectStorage(self):
         try:
             self.storage = JsonStore(self.data_file)
@@ -97,5 +103,14 @@ if __name__ == "__main__":
     db.data_file = "test_data.json"
 
     connector = IOBConnect(username='93429', password='93429')
-    duties = connector.run()
+    try:
+        duties = connector.run()
+    except WYOBError:
+        print("...OFFLINE...")
+        with open('./testhtml/checkinlist.htm') as file:
+            text = file.read()
+            connector.parseDuties(text)
+            connector.buildDutiesAndFlights()
+            duties = connector.duties
+
     db.updateDuties(duties)

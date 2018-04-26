@@ -1,0 +1,263 @@
+{
+  "FLIGHT_201804051235_201804051930_MCT_MUC": {
+    "nature": "FLIGHT",
+    "start": "2018-04-05 12:35 +0400",
+    "end": "2018-04-05 19:30 +0200",
+    "duration": "08:55",
+    "departure": "MCT",
+    "arrival": "MUC",
+    "flights": [
+      {
+        "flight_number": "WY123 ",
+        "start": "2018-04-05 14:05 +0400",
+        "end": "2018-04-05 19:00 +0200",
+        "duration": "06:55",
+        "departure": "MCT",
+        "arrival": "MUC"
+      }
+    ]
+  },
+  "FLIGHT_201804062030_201804070650_MUC_MCT": {
+    "nature": "FLIGHT",
+    "start": "2018-04-06 20:30 +0200",
+    "end": "2018-04-07 06:50 +0400",
+    "duration": "08:20",
+    "departure": "MUC",
+    "arrival": "MCT",
+    "flights": [
+      {
+        "flight_number": "WY124 ",
+        "start": "2018-04-06 21:45 +0200",
+        "end": "2018-04-07 06:20 +0400",
+        "duration": "06:35",
+        "departure": "MUC",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  "OFF_201804080000_201804082359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-08 00:00 +0400",
+    "end": "2018-04-08 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "STANDBY_201804090600_201804091800_None_None": {
+    "nature": "STANDBY",
+    "start": "2018-04-09 06:00 +0400",
+    "end": "2018-04-09 18:00 +0400",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "FLIGHT_201804100725_201804102035_MCT_KUL": {
+    "nature": "FLIGHT",
+    "start": "2018-04-10 07:25 +0400",
+    "end": "2018-04-10 20:35 +0800",
+    "duration": "09:10",
+    "departure": "MCT",
+    "arrival": "KUL",
+    "flights": [
+      {
+        "flight_number": "WY823 ",
+        "start": "2018-04-10 08:55 +0400",
+        "end": "2018-04-10 20:05 +0800",
+        "duration": "07:10",
+        "departure": "MCT",
+        "arrival": "KUL"
+      }
+    ]
+  },
+  "FLIGHT_201804112020_201804120050_KUL_MCT": {
+    "nature": "FLIGHT",
+    "start": "2018-04-11 20:20 +0800",
+    "end": "2018-04-12 00:50 +0400",
+    "duration": "08:30",
+    "departure": "KUL",
+    "arrival": "MCT",
+    "flights": [
+      {
+        "flight_number": "WY824 ",
+        "start": "2018-04-11 21:35 +0800",
+        "end": "2018-04-12 00:20 +0400",
+        "duration": "06:45",
+        "departure": "KUL",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  "STANDBY_201804130600_201804131800_None_None": {
+    "nature": "STANDBY",
+    "start": "2018-04-13 06:00 +0400",
+    "end": "2018-04-13 18:00 +0400",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "OFF_201804140000_201804142359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-14 00:00 +0400",
+    "end": "2018-04-14 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "OFF_201804150000_201804152359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-15 00:00 +0400",
+    "end": "2018-04-15 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "OFF_201804160000_201804162359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-16 00:00 +0400",
+    "end": "2018-04-16 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "FLIGHT_201804172350_201804180700_MCT_LHR": {
+    "nature": "FLIGHT",
+    "start": "2018-04-17 23:50 +0400",
+    "end": "2018-04-18 07:00 +0100",
+    "duration": "10:10",
+    "departure": "MCT",
+    "arrival": "LHR",
+    "flights": [
+      {
+        "flight_number": "WY103 ",
+        "start": "2018-04-18 01:20 +0400",
+        "end": "2018-04-18 06:30 +0100",
+        "duration": "08:10",
+        "departure": "MCT",
+        "arrival": "LHR"
+      }
+    ]
+  },
+  "FLIGHT_201804190725_201804191930_LHR_MCT": {
+    "nature": "FLIGHT",
+    "start": "2018-04-19 07:25 +0100",
+    "end": "2018-04-19 19:30 +0400",
+    "duration": "09:05",
+    "departure": "LHR",
+    "arrival": "MCT",
+    "flights": [
+      {
+        "flight_number": "WY104 ",
+        "start": "2018-04-19 08:25 +0100",
+        "end": "2018-04-19 19:00 +0400",
+        "duration": "07:35",
+        "departure": "LHR",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  "OFF_201804200000_201804202359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-20 00:00 +0400",
+    "end": "2018-04-20 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "STANDBY_201804211800_201804220600_None_None": {
+    "nature": "STANDBY",
+    "start": "2018-04-21 18:00 +0400",
+    "end": "2018-04-22 06:00 +0400",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "STANDBY_201804221800_201804230600_None_None": {
+    "nature": "STANDBY",
+    "start": "2018-04-22 18:00 +0400",
+    "end": "2018-04-23 06:00 +0400",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "FLIGHT_201804241255_201804242005_MCT_MXP": {
+    "nature": "FLIGHT",
+    "start": "2018-04-24 12:55 +0400",
+    "end": "2018-04-24 20:05 +0200",
+    "duration": "09:10",
+    "departure": "MCT",
+    "arrival": "MXP",
+    "flights": [
+      {
+        "flight_number": "WY143 ",
+        "start": "2018-04-24 14:25 +0400",
+        "end": "2018-04-24 19:35 +0200",
+        "duration": "07:10",
+        "departure": "MCT",
+        "arrival": "MXP"
+      }
+    ]
+  },
+  "FLIGHT_201804252100_201804260720_MXP_MCT": {
+    "nature": "FLIGHT",
+    "start": "2018-04-25 21:00 +0200",
+    "end": "2018-04-26 07:20 +0400",
+    "duration": "08:20",
+    "departure": "MXP",
+    "arrival": "MCT",
+    "flights": [
+      {
+        "flight_number": "WY144 ",
+        "start": "2018-04-25 22:15 +0200",
+        "end": "2018-04-26 06:50 +0400",
+        "duration": "06:35",
+        "departure": "MXP",
+        "arrival": "MCT"
+      }
+    ]
+  },
+  "OFF_201804270000_201804272359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-27 00:00 +0400",
+    "end": "2018-04-27 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "OFF_201804280000_201804282359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-28 00:00 +0400",
+    "end": "2018-04-28 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "OFF_201804290000_201804292359_None_None": {
+    "nature": "OFF",
+    "start": "2018-04-29 00:00 +0400",
+    "end": "2018-04-29 23:59 +0400",
+    "duration": "23:59",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  },
+  "STANDBY_201804300600_201804301800_None_None": {
+    "nature": "STANDBY",
+    "start": "2018-04-30 06:00 +0400",
+    "end": "2018-04-30 18:00 +0400",
+    "duration": "12:00",
+    "departure": null,
+    "arrival": null,
+    "flights": []
+  }
+}
