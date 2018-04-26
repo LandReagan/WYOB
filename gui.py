@@ -7,6 +7,7 @@ from kivy.lang import Builder
 
 from logger import logI
 from controller import Controller
+from menu import Menu
 
 Builder.load_file("gui.kv")
 
@@ -37,3 +38,6 @@ class GUI(BoxLayout):
         self.last_updated = update_data['last_updated']
         self.next_duty = update_data['next_duty']
         self.next_reporting = update_data['next_reporting']
+
+    def showMenu(self):
+        self.add_widget(Menu())

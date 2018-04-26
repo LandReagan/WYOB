@@ -1,0 +1,15 @@
+#:set omanair_blue (.33, .45, .58)
+#:set omanair_white (.95, .95, .95)
+
+<Menu>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgb: omanair_blue
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        text: 'Login'
+    Label:
+        text: 'Update'

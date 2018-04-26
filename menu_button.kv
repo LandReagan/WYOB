@@ -1,0 +1,21 @@
+#:set omanair_blue (.33, .45, .58)
+#:set omanair_white (.95, .95, .95)
+
+<MenuButton>:
+    canvas:
+        Color:
+            rgb: omanair_blue
+        Rectangle:
+            pos: root.pos
+            size: root.size
+        Color:
+            rgb: omanair_white
+        Rectangle:
+            pos: (root.center_x - root.width * 0.3, root.center_y)
+            size: (root.width * 0.6, root.height * 0.05)
+        Rectangle:
+            pos: (root.center_x - root.width * 0.3, root.center_y - (root.height * 0.25))
+            size: (root.width * 0.6, root.height * 0.05)
+        Rectangle:
+            pos: (root.center_x - root.width * 0.3, root.center_y + (root.height * 0.25))
+            size: (root.width * 0.6, root.height * 0.05)

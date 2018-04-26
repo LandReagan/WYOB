@@ -2,6 +2,8 @@
 #:set omanair_grey (.78, .78, .78)
 #:set omanair_gold (1, .72, .3)
 
+#:import MenuButton menu_button.MenuButton
+
 <WYOB_Label@Label>
 	color: (0, 0, 0, 1)
 	canvas.before:
@@ -24,8 +26,7 @@
 				Rectangle:
 					pos: self.pos
 					size: self.size
-		Button:
-			text: "Update!"
+		MenuButton:
 			size_hint_x: 0.3
 			on_press: root.update()
 
