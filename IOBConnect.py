@@ -1,7 +1,7 @@
-import requests
 import re
 import json
 import datetime
+import requests
 
 from parsers import TokenParser, DutyParser
 from WYOB_error import WYOBError
@@ -196,7 +196,9 @@ class IOBConnect:
                 utc_datetime += datetime.timedelta(days=1)
             gmt_diff = local_datetime - utc_datetime
             zone = datetime.timezone(gmt_diff)
-            aware_local_datetime = local_datetime.astimezone(zone)
+            aware_local_datetime = local_datetime.replace(tzinfo=zone)
+            print(raw_start_local_date, raw_start_local_time, raw_start_utc_time)
+            print(local_datetime, utc_datetime)
             return aware_local_datetime
         except Exception:
             raise WYOBError('Error setting up the date from IOB.')

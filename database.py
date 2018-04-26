@@ -57,7 +57,7 @@ class Database:
             return
 
         # Erase updated duties:
-        for key in self.storage.keys:
+        for key in self.storage.keys():
             duty = Duty()
             duty.fromDict(self.storage.get(key))
             if duty.start >= startPeriod and duty.end <= endPeriod:
@@ -96,5 +96,6 @@ if __name__ == "__main__":
     db = Database()
     db.data_file = "test_data.json"
 
-    with open("test.txt", "r") as file:
-        pass
+    connector = IOBConnect(username='93429', password='93429')
+    duties = connector.run()
+    db.updateDuties(duties)
