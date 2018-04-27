@@ -1,12 +1,13 @@
 from datetime import datetime
 
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, ObjectProperty
 from kivy.clock import Clock
 from kivy.lang import Builder
 
 from controller import Controller
 from menu import Menu
+from duty_widget import DutyWidget
 
 Builder.load_file("gui.kv")
 
@@ -18,6 +19,8 @@ class GUI(BoxLayout):
     last_updated = StringProperty("?")
     next_duty = StringProperty("?")
     next_reporting = StringProperty("?")
+
+    central_widget = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
@@ -33,9 +36,17 @@ class GUI(BoxLayout):
 
     def update(self):
         update_data = self.controller.update()
+
+        # Header data update
         self.last_updated = update_data['last_updated']
         self.next_duty = update_data['next_duty']
         self.next_reporting = update_data['next_reporting']
+
+        # Central widget update
+        duty_list = self.controller.getLastToNextThreeDuties()
+        for duty in duty_list:
+            duty_widget = DutyWidget(duty)
+            self.central_widget.add_widget(duty_widget)
 
     def showMenu(self):
         self.add_widget(Menu())

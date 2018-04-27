@@ -48,6 +48,8 @@ class Database:
         """
         self._connectStorage()
 
+        sorted(duties, key=lambda duty: duty.start)
+
         if duties and len(duties) > 0:
             startPeriod = duties[0].start
             endPeriod = duties[len(duties) - 1].end

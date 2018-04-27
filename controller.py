@@ -25,7 +25,37 @@ class Controller:
         return update_data
 
     def getLastUpdated(self):
-        return "???"
+        return "NOT IMPLEMENTED"
+
+    def getLastToNextThreeDuties(self):
+        """
+        Temporary method, awaiting for RecycleView implementation
+        :return: [duties] the required duties
+        """
+        result = []
+        now = datetime.utcnow().astimezone()
+        current_or_last_index = None
+        # 1. Get the next duty index:
+        for i in range(len(self.duties)):
+            duty = self.duties[i]
+            if duty.end > now:
+                current_or_last_index = i
+                break
+
+        # 2. Set starting index "one step beyond!"
+        if current_or_last_index and current_or_last_index > 0:
+            starting_index = current_or_last_index - 1
+        else:
+            starting_index = 0
+
+        # 3. Then get the next 5 duties (if it exists!)
+        index = starting_index
+        while index < len(self.duties) and index < starting_index + 5:
+            result.append(self.duties[index])
+            index += 1
+
+        return result
+
 
     def getNextDuty(self):
         now = datetime.utcnow().astimezone()
@@ -39,7 +69,6 @@ class Controller:
         if not duty:
             return "UNKNOWN"
         if duty.nature == "FLIGHT":
-            print(duty)
             result = duty.flights[0].departure
             for flight in duty.flights:
                 result += " - " + flight.arrival
@@ -54,6 +83,9 @@ class Controller:
         return duty.start.strftime(datetime_format)
 
     def loadDutiesFromJson(self, file):
+        """ OBSOLETE
+            Do not use!
+        """
         try:
             with open(file, 'r') as file:
                 try:

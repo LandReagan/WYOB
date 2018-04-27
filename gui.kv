@@ -3,6 +3,7 @@
 #:set omanair_gold (1, .72, .3)
 
 #:import MenuButton menu_button.MenuButton
+#:import DutyWidget duty_widget.DutyWidget
 
 <WYOB_Label@Label>
 	color: (0, 0, 0, 1)
@@ -14,6 +15,7 @@
 			size: self.size
 
 <GUI>:
+    central_widget: central_widget
 	orientation: "vertical"
 	BoxLayout:
 		size_hint_y: 0.2
@@ -68,8 +70,15 @@
 		WYOB_Label:
 			text: root.next_reporting
 
-	WYOB_Label:
-		text: "Central widget"
+	BoxLayout:
+	    id: central_widget
+	    orientation: 'vertical'
+		canvas.before:
+		    Color:
+		        rgb: omanair_grey
+		    Rectangle:
+		        pos: self.pos
+		        size: self.size
 
 	BoxLayout:
 	    size_hint_y: 0.1

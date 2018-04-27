@@ -37,8 +37,10 @@ class DutyWidget(BoxLayout):
             for flight in duty.flights:
                 legs += " - " + flight.arrival
             self.legs = legs
-        else:
+        elif duty.departure and duty.arrival:
             self.legs = duty.departure + " - " + duty.arrival
+        else:
+            self.legs = ''
 
     def buildUtcTimes(self, duty):
         self.departure_time_utc = (
