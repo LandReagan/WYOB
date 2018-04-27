@@ -200,27 +200,3 @@ class IOBConnect:
             return aware_local_datetime
         except Exception:
             raise WYOBError('Error setting up the date from IOB.')
-
-
-if __name__ == '__main__':
-
-    iobconnect = IOBConnect(username='93429', password='93429')
-    text = ''
-    try:
-        # raise Exception()  # Clear that line to try online
-        print("Trying to connect...")
-        iobconnect.connect()
-        text = iobconnect.getCheckinList()
-    except Exception as e:
-        print('Test mode with no connection...')
-        with open('./testhtml/checkinlist.htm') as file:
-            text = file.read()
-
-    iobconnect.parseDuties(text)
-    iobconnect.buildDutiesAndFlights()
-
-    with open("test.txt", 'w') as file:
-        duties_list = []
-        for duty in iobconnect.duties:
-            duties_list.append(duty.asDict())
-        json.dump(duties_list, file, indent=2)

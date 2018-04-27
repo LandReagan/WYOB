@@ -95,22 +95,3 @@ class Database:
 
     def _disconnectStorage(self):
         self.storage = None
-
-
-if __name__ == "__main__":
-
-    db = Database()
-    db.data_file = "test_data.json"
-
-    connector = IOBConnect(username='93429', password='93429')
-    try:
-        duties = connector.run()
-    except WYOBError:
-        print("...OFFLINE...")
-        with open('./testhtml/checkinlist.htm') as file:
-            text = file.read()
-            connector.parseDuties(text)
-            connector.buildDutiesAndFlights()
-            duties = connector.duties
-
-    db.updateDuties(duties)

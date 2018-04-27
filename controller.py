@@ -70,10 +70,3 @@ class Controller:
         except OSError as error:
             raise WYOBError("Error trying to open " + str(file) +
                             ". Error from system: " + str(error))
-
-
-if __name__ == "__main__":
-
-    controller = Controller()
-    controller.update()
-

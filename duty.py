@@ -154,30 +154,3 @@ class Duty:
 
     def updateDuration(self):
         self.duration = self.end - self.start
-
-
-if __name__ == '__main__':
-    print("Duty class basic tests:")
-    duty = Duty()
-    print(duty)
-    if duty.isValid:
-        print("FAILED isValid returned true where it should be false!")
-    else:
-        print("PASSED isValid returned false with an empty Duty!")
-
-    try:
-        duty.addFlight(0)
-    except WYOBError as e:
-        print("PASSED addFlight with wrong argument. Message:\n\t" + str(e))
-
-    duty.nature = "FLIGHT"
-    duty.start = datetime.now()
-    duty.end = duty.start + timedelta(minutes=453)
-    duty.updateDuration()
-    duty.departure = 'CDG'
-    print(duty)
-    print(duty.key)
-    if duty.isValid:
-        print("PASSED isValid returned true for a correct duty")
-    else:
-        print("FAILED isValid returned false for a correct duty")
