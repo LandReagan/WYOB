@@ -3,6 +3,8 @@ import json
 import datetime
 import requests
 
+from kivy.logger import Logger
+
 from parsers import TokenParser, DutyParser
 from WYOB_error import WYOBError
 from duty import Duty
@@ -62,6 +64,7 @@ class IOBConnect:
             )
         self._session = requests.session()
         # 2. Trying to connect to IOB website and parsing the answer
+        Logger.info("WYOB: Connecting to IOB...")
         try:
             req = self._session.get(self.IOBURL_login_filter)
             self._token_parser.feed(req.text)
@@ -149,7 +152,7 @@ class IOBConnect:
                 self.duties.append(duty)
 
     def writeToFile(self, file='lastLoad.json'):
-        """
+        """ OBSOLETE
         Gets an optional JSON file name as parameter. If there is no file name,
         data is written in "lastLoad.json"
         :param file: optional file name

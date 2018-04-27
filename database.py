@@ -2,14 +2,15 @@
 """ This file contains required classes to access the JSON database
 BIG TODO:
 - Usage:
-    => Class with methods to call
+    => Class with methods to call - DONE
 - Ensure database consistency
     => save a copy before changing
     => copy it back in case of error
-    => Change only what is required
+    => Change only what is required - DONE
 """
 
 from kivy.storage.jsonstore import JsonStore
+from kivy.logger import Logger
 
 from WYOB_error import WYOBError
 from IOBConnect import IOBConnect
@@ -82,6 +83,7 @@ class Database:
             duties = iobconnector.run()
             return duties
         except WYOBError:
+            Logger.info("WYOB: Continuing offline!")
             return None
 
     def _connectStorage(self):
