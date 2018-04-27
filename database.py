@@ -46,6 +46,9 @@ class Database:
         """ Setter for duties in the database. Overlapping duties (in time
             period) are overwritten.
         """
+        if not duties:
+            return
+
         self._connectStorage()
 
         sorted(duties, key=lambda duty: duty.start)
