@@ -12,7 +12,6 @@ BIG TODO:
 from kivy.storage.jsonstore import JsonStore
 
 from WYOB_error import WYOBError
-from logger import logI
 from IOBConnect import IOBConnect
 from duty import Duty
 
@@ -78,13 +77,11 @@ class Database:
         """ Use the connector to get duties from IOB system
         :return: [duties] a list of duties from IOB, or None in case of failure
         """
-        logI("Updating from IOB...")
         iobconnector = IOBConnect('93429', '93429')
         try:
             duties = iobconnector.run()
             return duties
         except WYOBError:
-            logI("Unable to connect, continuing offline...")
             return None
 
     def _connectStorage(self):

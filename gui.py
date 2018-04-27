@@ -5,7 +5,6 @@ from kivy.properties import StringProperty
 from kivy.clock import Clock
 from kivy.lang import Builder
 
-from logger import logI
 from controller import Controller
 from menu import Menu
 
@@ -33,7 +32,6 @@ class GUI(BoxLayout):
         self.loc_clock = datetime.now().strftime('%H:%M:%S LOC')
 
     def update(self):
-        logI("Update!")
         update_data = self.controller.update()
         self.last_updated = update_data['last_updated']
         self.next_duty = update_data['next_duty']
