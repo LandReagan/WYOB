@@ -20,6 +20,7 @@ from duty import Duty
 class Database:
 
     data_file = "data.json"
+    update_time = None
     storage = None
 
     def __init__(self):
@@ -85,7 +86,7 @@ class Database:
         """
         iobconnector = IOBConnect('93429', '93429')
         try:
-            duties = iobconnector.run()
+            duties, self.update_time = iobconnector.run()
             return duties
         except WYOBError:
             Logger.info("WYOB: Continuing offline!")

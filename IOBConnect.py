@@ -34,8 +34,8 @@ class IOBConnect:
     def run(self):
         """
         This method connects and fetch the page, parse raw duties then create
-        duties and write the corresponding JSON file 'lastLoad.json'.
-        :return:
+        duties and return them with the current datetime object
+        :return: duties,datetime.now()
         """
         text = None
         try:
@@ -47,7 +47,7 @@ class IOBConnect:
         if text:
             self.parseDuties(text)
             self.buildDutiesAndFlights()
-            return self.duties
+            return self.duties, datetime.datetime.now()
         else:
             return None
 

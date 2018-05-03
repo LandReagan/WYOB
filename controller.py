@@ -25,7 +25,7 @@ class Controller:
         return update_data
 
     def getLastUpdated(self):
-        return "NOT IMPLEMENTED"
+        return self.database.update_time.strftime(datetime_format)
 
     def getLastToNextThreeDuties(self):
         """
