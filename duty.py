@@ -18,6 +18,7 @@ class Duty:
         'FLIGHT',
         'STANDBY',
         'GROUND',
+        'UNKNOWN',
     ]
 
     def __init__(self):
@@ -112,14 +113,25 @@ class Duty:
             If not possible, return False
         """
         flight_pattern = re.compile('\d{3}-\d{2}')
-        if aString.count('OFF') > 0:
+
+        # 1. OFF
+        if aString.count('OFF') > 0 or aString.count('ROF') > 0:
             self.nature = 'OFF'
+        # 2. STANDBY
         elif (aString.count('HS-AM') > 0 or aString.count('HS-PM') > 0 or
               aString.count('HS2') > 0):  # TODO!
             self.nature = 'STANDBY'
+        # 3. FLIGHT
         elif re.match(flight_pattern, aString) is not None:
             self.nature = 'FLIGHT'
+        # 4. TRAINING
+        elif (aString.count('SEC') > 0 or aString.count('CRM') > 0 or
+                aString.count('PDC') > 0 or aString.count('SEP') > 0 or
+                aString.count('TECREF') > 0):
+            self.nature = 'TRAINING'
+        # 5. UNKNOWN
         else:
+            self.nature = 'UNKNOWN'
             return False
         return True
 

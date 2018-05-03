@@ -26,6 +26,7 @@ class GUI(BoxLayout):
         BoxLayout.__init__(self, **kwargs)
         self.clockSetUp()
         self.controller = Controller()
+        self.update()
 
     def clockSetUp(self):
         Clock.schedule_interval(self.clockUpdate, 0.2)
@@ -43,6 +44,7 @@ class GUI(BoxLayout):
         self.next_reporting = update_data['next_reporting']
 
         # Central widget update
+        self.central_widget.clear_widgets()
         duty_list = self.controller.getLastToNextThreeDuties()
         for duty in duty_list:
             duty_widget = DutyWidget(duty)

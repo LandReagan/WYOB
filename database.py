@@ -60,13 +60,13 @@ class Database:
             return
 
         # Erase updated duties:
-        for key in self.storage.keys():
+        for key in list(self.storage):
             duty = Duty()
-            rawData = self.storage[key]
+            rawData = self.storage.get(key)
             if rawData:
                 duty.fromDict(rawData)
                 if duty.start >= startPeriod and duty.end <= endPeriod:
-                    del self.storage[key]
+                    self.storage.delete(key)
 
         # Write updated duties:
         for duty in duties:
