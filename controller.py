@@ -25,7 +25,10 @@ class Controller:
         return update_data
 
     def getLastUpdated(self):
-        return self.database.update_time.strftime(datetime_format)
+        if self.database.update_time:
+            return self.database.update_time.strftime(datetime_format)
+        else:
+            "?"
 
     def getLastToNextThreeDuties(self):
         """
