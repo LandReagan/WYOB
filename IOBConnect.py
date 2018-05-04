@@ -15,11 +15,11 @@ class IOBConnect:
     """ This class connects to IOB system and handle requests.
     """
 
-    IOBURL_login_filter = 'https://fltops.omanair.com/' +\
+    _IOBURL_login_filter = 'https://fltops.omanair.com/' +\
         'mlt/filter.jsp?window=filter&loggedin=false'
-    IOBURL_checkin_list = 'https://fltops.omanair.com/' +\
+    _IOBURL_checkin_list = 'https://fltops.omanair.com/' +\
         'mlt/checkinlist.jsp'
-    duties = []
+    _duties = []
 
     def __init__(self, username=None, password=None):
         """ Gets username and password and initialize attributes
@@ -29,7 +29,7 @@ class IOBConnect:
         self._session = None
         self._token_parser = TokenParser()
         self._duty_parser = DutyParser()
-        self.raw_duties = []
+        self._raw_duties = []
 
     def run(self):
         """
@@ -39,19 +39,19 @@ class IOBConnect:
         """
         text = None
         try:
-            self.connect()
-            text = self.getCheckinList()
+            self._connect()
+            text = self._getCheckinList()
         except Exception as e:
-            raise WYOBError("Connection failed!")
+            raise WYOBError("Connection failed!" + str(e))
 
         if text:
-            self.parseDuties(text)
-            self.buildDutiesAndFlights()
-            return self.duties, datetime.datetime.now()
+            self._parseDuties(text)
+            self._buildDutiesAndFlights()
+            return self._duties, datetime.datetime.now()
         else:
-            return None
+            return None, None
 
-    def connect(self):
+    def _connect(self):
         """ create session and log in.
         """
         # 1. Check parameters
@@ -66,11 +66,11 @@ class IOBConnect:
         # 2. Trying to connect to IOB website and parsing the answer
         Logger.info("WYOB: Connecting to IOB...")
         try:
-            req = self._session.get(self.IOBURL_login_filter)
+            req = self._session.get(self._IOBURL_login_filter)
             self._token_parser.feed(req.text)
-        except requests.RequestException:
+        except requests.RequestException as e:
             self._session = None
-            raise WYOBError('Connection error !')
+            raise WYOBError('Connection error !' + str(e))
 
         # 3. If parsing has failed, error is raised...
         if self._token_parser.token == '' or self._token_parser.new_URL == '':
@@ -86,16 +86,16 @@ class IOBConnect:
         # 5. Log in
         self._session.post(self._token_parser.new_URL, data=values)
 
-    def getCheckinList(self):
-        req = self._session.get(self.IOBURL_checkin_list)
+    def _getCheckinList(self):
+        req = self._session.get(self._IOBURL_checkin_list)
         return req.text
 
-    def parseDuties(self, text):
+    def _parseDuties(self, text):
         self._duty_parser.feed(text)
         for duty in self._duty_parser.duties:
-            self.raw_duties.append(dict(zip(self._duty_parser.headers, duty)))
+            self._raw_duties.append(dict(zip(self._duty_parser.headers, duty)))
 
-    def buildDutiesAndFlights(self):
+    def _buildDutiesAndFlights(self):
         """
         Parses the raw strings to extract Duty and Flight instances
         """
@@ -106,17 +106,17 @@ class IOBConnect:
         airport_pattern = re.compile(r'\D{3}')
         trip_pattern = re.compile(r'\s*\w+\s*')
 
-        for raw_duty in self.raw_duties:
+        for raw_duty in self._raw_duties:
             # Start
             start_match = re.match(full_time_pattern, raw_duty['Start'])
             if start_match:
-                start_time = self.getTimeFromMatch(start_match)
+                start_time = self._getTimeFromMatch(start_match)
             else:
                 start_time = None
             # End
             end_match = re.match(full_time_pattern, raw_duty['End'])
             if end_match:
-                end_time = self.getTimeFromMatch(end_match)
+                end_time = self._getTimeFromMatch(end_match)
             else:
                 end_time = None
             # Departure
@@ -139,7 +139,7 @@ class IOBConnect:
                 flight.setEnd(end_time)
                 flight.departure = departure
                 flight.arrival = arrival
-                last_duty = self.duties[len(self.duties) - 1]
+                last_duty = self._duties[len(self._duties) - 1]
                 last_duty.addFlight(flight)
 
             elif (re.match(duty_pattern, raw_duty['Duty']) or
@@ -149,7 +149,7 @@ class IOBConnect:
                     duty.nature = 'FLIGHT'
                 duty.setStart(start_time)
                 duty.setEnd(end_time)
-                self.duties.append(duty)
+                self._duties.append(duty)
 
     def writeToFile(self, file='lastLoad.json'):
         """ OBSOLETE
@@ -161,7 +161,7 @@ class IOBConnect:
         try:
             with open(file, 'w') as file_stream:
                 duties_dict_list = [
-                    duty.asDict() for duty in self.duties
+                    duty.asDict() for duty in self._duties
                 ]
                 json.dump(duties_dict_list, file_stream, indent=2) # TODO: Debug
         except OSError as e:
@@ -169,7 +169,7 @@ class IOBConnect:
                             " could not be opened. Reported error: " + str(e))
         return file
 
-    def getTimeFromMatch(self, match):
+    def _getTimeFromMatch(self, match):
         """
         Build a timezone aware datetime object to fully determine the match string
         :param match: a returned "match object" string

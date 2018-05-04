@@ -20,7 +20,7 @@ from duty import Duty
 class Database:
 
     data_file = "data.json"
-    update_time = "?"
+    update_time = None
     storage = None
 
     def __init__(self):

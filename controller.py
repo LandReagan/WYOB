@@ -18,14 +18,14 @@ class Controller:
         self.duties = self.database.getDuties()
         # TODO: last updated feature (App state file?)
         update_data = {
-            "last_updated": self.getLastUpdated(),
+            "last_updated": self.getLastUpdated() or "?",
             "next_duty": self.getNextDutyOrLegs(),
             "next_reporting": self.getNextReporting()
         }
         return update_data
 
     def getLastUpdated(self):
-        if self.database.update_time:
+        if isinstance(self.database.update_time, datetime):
             return self.database.update_time.strftime(datetime_format)
         else:
             "?"

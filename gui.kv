@@ -16,6 +16,7 @@
 
 <GUI>:
     central_widget: central_widget
+    menu_widget: menu_widget
 	orientation: "vertical"
 	BoxLayout:
 		size_hint_y: 0.2
@@ -30,7 +31,17 @@
 					size: self.size
 		MenuButton:
 			size_hint_x: 0.3
-			on_press: root.update()
+			on_press: root.onMenuButton()
+
+	BoxLayout:
+	    id: menu_widget
+	    orientation: 'vertical'
+	    canvas.before:
+            Color:
+                rgb: omanair_blue
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
 	BoxLayout:
 		size_hint_y: 0.15
