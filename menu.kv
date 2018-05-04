@@ -1,6 +1,9 @@
 #:set omanair_blue (.33, .45, .58)
 #:set omanair_white (.95, .95, .95)
 
+<MenuItem@Button>:
+
+
 <Menu>:
     orientation: 'vertical'
     canvas.before:
@@ -9,7 +12,11 @@
         Rectangle:
             pos: self.pos
             size: self.size
-    Label:
+
+    MenuItem:
         text: 'Login'
-    Label:
+        on_press: root.onLogin()
+
+    MenuItem:
         text: 'Update'
+        on_press: root.onUpdate()

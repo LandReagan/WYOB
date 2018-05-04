@@ -20,7 +20,7 @@ class GUI(BoxLayout):
     next_duty = StringProperty("?")
     next_reporting = StringProperty("?")
 
-    menu_expanded = BooleanProperty(False)
+    menu_expanded = BooleanProperty(True)
     central_widget = ObjectProperty(None)
     menu_widget = ObjectProperty(None)
 
@@ -28,6 +28,7 @@ class GUI(BoxLayout):
         BoxLayout.__init__(self, **kwargs)
         self.clockSetUp()
         self.controller = Controller()
+        self.onMenuButton()
         self.update()
 
     def clockSetUp(self):
@@ -45,7 +46,8 @@ class GUI(BoxLayout):
         self.next_duty = update_data['next_duty']
         self.next_reporting = update_data['next_reporting']
 
-
+        if self.central_widget.height > 0:
+            self._centralWidgetUpdate()
 
     def onMenuButton(self):
         """ Toggle menu or central widget, and menu_expanded value"""
@@ -59,7 +61,7 @@ class GUI(BoxLayout):
             self.central_widget.clear_widgets()
             self.central_widget.size_hint_y = None
             self.central_widget.height = 0
-            menu = Menu()
+            menu = Menu(self)
             self.menu_widget.add_widget(menu)
             self.menu_widget.size_hint_y = 1
         self.menu_expanded = not self.menu_expanded
