@@ -14,10 +14,11 @@ class Controller:
     database = Database()
 
     def update(self):
-        self.database.updateFromIOB()
+        iob_updated = self.database.updateFromIOB()
         self.duties = self.database.getDuties()
         # TODO: last updated feature (App state file?)
         update_data = {
+            "updated": iob_updated,
             "last_updated": self.getLastUpdated() or "?",
             "next_duty": self.getNextDutyOrLegs(),
             "next_reporting": self.getNextReporting()

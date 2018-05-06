@@ -11,7 +11,7 @@ class Menu(BoxLayout):
         self.gui = parent
 
     def onLogin(self):
-        pass
+        self.gui.login()
 
     def onUpdate(self):
         self.gui.update()

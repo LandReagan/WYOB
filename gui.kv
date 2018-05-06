@@ -7,6 +7,7 @@
 
 <WYOB_Label@Label>
 	color: (0, 0, 0, 1)
+	font_size: 40
 	canvas.before:
 		Color:
 			rgb: omanair_grey
@@ -17,12 +18,15 @@
 <GUI>:
     central_widget: central_widget
     menu_widget: menu_widget
+    footer_label: footer_label
 	orientation: "vertical"
 	BoxLayout:
 		size_hint_y: 0.2
 		WYOB_Label:
-			text: "WYOB v0.1 alpha "
+			text: "WYOB v0.1 [i]alpha[/i] "
 			bold: True
+			font_size: 50
+			markup: True
 			canvas.before:
 				Color:
 					rgb: omanair_blue
@@ -47,6 +51,7 @@
 		size_hint_y: 0.15
 		WYOB_Label:
 			text: "Last updated:"
+			italic: True
 			canvas.before:
 				Color:
 					rgb: omanair_gold
@@ -59,6 +64,7 @@
 		size_hint_y: 0.15
 		WYOB_Label:
 			text: "Next duty:"
+			italic: True
 			canvas.before:
 				Color:
 					rgb: omanair_gold
@@ -72,6 +78,7 @@
 		size_hint_y: 0.15
 		WYOB_Label:
 			text: "Reporting:"
+			italic: True
 			canvas.before:
 				Color:
 					rgb: omanair_gold
@@ -116,6 +123,8 @@
 
 
 	WYOB_Label:
-		text: "An unofficial app to make IOB handy!"
+	    id: footer_label
+		text: 'An unofficial app to make IOB handy!'
 		italic: True
+		markup: True
 		size_hint_y: 0.1

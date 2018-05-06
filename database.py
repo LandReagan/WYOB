@@ -11,11 +11,13 @@ BIG TODO:
 
 from kivy.storage.jsonstore import JsonStore
 from kivy.logger import Logger
+from datetime import datetime
 
 from WYOB_error import WYOBError
 from IOBConnect import IOBConnect
 from duty import Duty
 
+datetime_format = "%Y-%m-%d %H:%M %z"
 
 class Database:
 
@@ -34,11 +36,15 @@ class Database:
         self._connectStorage()
 
         for key in self.storage:
-            duty = Duty()
-            duty.fromDict(self.storage[key])
-            if ((start_date is None or duty.start >= start_date) and
-                    (end_date is None or duty.end <= end_date)):
-                duties.append(duty)
+            if key == 'header':
+                self.update_time = datetime.strptime(
+                    self.storage.get('header')['last_update'], datetime_format)
+            else:
+                duty = Duty()
+                duty.fromDict(self.storage[key])
+                if ((start_date is None or duty.start >= start_date) and
+                        (end_date is None or duty.end <= end_date)):
+                    duties.append(duty)
 
         self._disconnectStorage()
         return duties
@@ -62,12 +68,13 @@ class Database:
 
         # Erase updated duties:
         for key in list(self.storage):
-            duty = Duty()
-            rawData = self.storage.get(key)
-            if rawData:
-                duty.fromDict(rawData)
-                if duty.start >= startPeriod and duty.end <= endPeriod:
-                    self.storage.delete(key)
+            if key != 'header':
+                duty = Duty()
+                rawData = self.storage.get(key)
+                if rawData:
+                    duty.fromDict(rawData)
+                    if duty.start >= startPeriod and duty.end <= endPeriod:
+                        self.storage.delete(key)
 
         # Write updated duties:
         for duty in duties:
@@ -78,6 +85,10 @@ class Database:
     def updateFromIOB(self):
         duties = self._getIOBDuties()
         self.updateDuties(duties)
+        if duties is None:
+            return False
+        else:
+            return True
 
     # PRIVATE METHODS
     def _getIOBDuties(self):
