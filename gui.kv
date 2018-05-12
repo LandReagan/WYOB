@@ -1,6 +1,7 @@
 #:set omanair_blue (.33, .45, .58)
 #:set omanair_grey (.78, .78, .78)
 #:set omanair_gold (1, .72, .3)
+#:set red (1, 0, 0, 1)
 
 #:import MenuButton menu_button.MenuButton
 #:import DutyWidget duty_widget.DutyWidget
@@ -87,6 +88,8 @@
 					size: self.size
 		WYOB_Label:
 			text: root.next_reporting
+			bold: True
+			color: red
 
 	BoxLayout:
 	    id: central_widget

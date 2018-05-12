@@ -1,3 +1,5 @@
+# TODO: Adapt for python 2.7
+
 from html.parser import HTMLParser
 
 
