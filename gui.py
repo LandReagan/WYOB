@@ -21,6 +21,7 @@ class GUI(BoxLayout):
     last_updated = StringProperty("?")
     next_duty = StringProperty("?")
     next_reporting = StringProperty("?")
+    time_to_reporting = StringProperty("?")
 
     menu_expanded = BooleanProperty(True)
     central_widget = ObjectProperty(None)
@@ -36,10 +37,21 @@ class GUI(BoxLayout):
 
     def clockSetUp(self):
         Clock.schedule_interval(self.clockUpdate, 0.2)
+        Clock.schedule_interval(self.timeToReportingUpdate, 0.2)
 
     def clockUpdate(self, dt):
         self.utc_clock = datetime.utcnow().strftime('%H:%M:%S GMT')
         self.loc_clock = datetime.now().strftime('%H:%M:%S LOC')
+
+    def timeToReportingUpdate(self, dt):
+        timedelta_to_reporting = self.controller.getTimeToReporting()
+        if timedelta_to_reporting is None:
+            self.time_to_reporting = '--:--'
+        else:
+            hours = int(timedelta_to_reporting.total_seconds() / 3600)
+            minutes = int((timedelta_to_reporting.total_seconds() % 3600) / 60)
+            seconds = int(timedelta_to_reporting.total_seconds() % 60)
+            self.time_to_reporting = str(hours) + 'h ' + str(minutes) + 'm ' + str(seconds) + 's'
 
     def update(self):
         update_data = self.controller.update()
@@ -77,7 +89,6 @@ class GUI(BoxLayout):
         self.menu_widget.clear_widgets()
         login_widget = Login()
         self.menu_widget.add_widget(login_widget)
-
 
     def footerMessageBlink(self, message, times=5, delta_time=1):
         last_text = self.footer_label.text

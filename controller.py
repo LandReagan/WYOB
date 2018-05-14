@@ -6,7 +6,7 @@ from duty import Duty
 from database import Database
 from utils27 import utcTZ
 
-datetime_format = "%Y-%m-%d %H:%M"
+datetime_format = "%d%b%Y %H:%M"
 
 
 class Controller:
@@ -85,6 +85,13 @@ class Controller:
         if not duty:
             return "UNKNOWN"
         return duty.start.strftime(datetime_format)
+
+    def getTimeToReporting(self):
+        duty = self.getNextDuty()
+        if not duty:
+            return None
+        now = datetime.utcnow().replace(tzinfo=utcTZ)
+        return duty.start - now
 
     def loadDutiesFromJson(self, file):
         """ OBSOLETE

@@ -49,7 +49,7 @@
                 size: self.size
 
 	BoxLayout:
-		size_hint_y: 0.15
+		size_hint_y: 0.10
 		WYOB_Label:
 			text: "Last updated:"
 			italic: True
@@ -62,7 +62,7 @@
 		WYOB_Label:
 			text: root.last_updated
 	BoxLayout:
-		size_hint_y: 0.15
+		size_hint_y: 0.10
 		WYOB_Label:
 			text: "Next duty:"
 			italic: True
@@ -76,7 +76,7 @@
 			text: root.next_duty
 
 	BoxLayout:
-		size_hint_y: 0.15
+		size_hint_y: 0.10
 		WYOB_Label:
 			text: "Reporting:"
 			italic: True
@@ -88,6 +88,22 @@
 					size: self.size
 		WYOB_Label:
 			text: root.next_reporting
+			bold: True
+			color: red
+
+	BoxLayout:
+		size_hint_y: 0.10
+		WYOB_Label:
+			text: "In:"
+			italic: True
+			canvas.before:
+				Color:
+					rgb: omanair_gold
+				Rectangle:
+					pos: self.pos
+					size: self.size
+		WYOB_Label:
+			text: root.time_to_reporting
 			bold: True
 			color: red
 
