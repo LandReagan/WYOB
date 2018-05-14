@@ -1,6 +1,6 @@
 # TODO: Adapt for python 2.7
 
-from html.parser import HTMLParser
+from HTMLParser import HTMLParser
 
 
 class TokenParser(HTMLParser):
@@ -54,4 +54,4 @@ class DutyParser(HTMLParser):
                 self._duty.append(self._data)
             if tag == 'tr' and len(self._duty) == len(self.headers):
                 self.duties.append(list(self._duty))
-                self._duty.clear()
+                del self._duty[:]

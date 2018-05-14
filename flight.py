@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from utils27 import parseDateTime
+
 datetime_format = "%Y-%m-%d %H:%M %z"
 
 
@@ -40,8 +42,8 @@ class Flight:
         :param data: JSON object representing a Flight
         """
         self.flight_number = data['flight_number']
-        self.setStart(datetime.strptime(data['start'], datetime_format))
-        self.setEnd(datetime.strptime(data['end'], datetime_format))
+        self.setStart(parseDateTime(data['start']))
+        self.setEnd(parseDateTime(data['end']))
         self.departure = data['departure']
         self.arrival = data['arrival']
 

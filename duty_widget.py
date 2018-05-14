@@ -1,8 +1,10 @@
-from datetime import timezone
+from datetime import timedelta
 
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.lang import Builder
+
+from utils27 import utcTZ
 
 Builder.load_file("duty_widget.kv")
 date_format = "%d%b%y"
@@ -43,7 +45,5 @@ class DutyWidget(BoxLayout):
             self.legs = ''
 
     def buildUtcTimes(self, duty):
-        self.departure_time_utc = (
-            duty.start.astimezone(tz=timezone.utc).strftime(time_format) + 'z')
-        self.arrival_time_utc = (
-            duty.end.astimezone(tz=timezone.utc).strftime(time_format) + 'z')
+        self.departure_time_utc = duty.start.astimezone(utcTZ).strftime(time_format)
+        self.arrival_time_utc = duty.end.astimezone(utcTZ).strftime(time_format)

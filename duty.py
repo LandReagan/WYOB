@@ -6,6 +6,7 @@ import re
 
 from WYOB_error import WYOBError
 from flight import Flight
+from utils27 import parseDateTime
 
 datetime_format = "%Y-%m-%d %H:%M %z"
 key_datetime_format = "%Y%m%d%H%M"
@@ -66,8 +67,8 @@ class Duty:
         :param data: JSON object representing a duty
         """
         self.nature = data['nature']
-        self.setStart(datetime.strptime(data['start'], datetime_format))
-        self.setEnd(datetime.strptime(data['end'], datetime_format))
+        self.setStart(parseDateTime(data['start']))
+        self.setEnd(parseDateTime(data['end']))
         self.departure = data['departure']
         self.arrival = data['arrival']
         for raw_flight in data['flights']:
@@ -98,7 +99,7 @@ class Duty:
 
     # PUBLIC METHODS
     def addFlight(self, flight):
-        if type(flight) == Flight:
+        if isinstance(flight, Flight):
             self.flights.append(flight)
             self.departure = self.flights[0].departure
             self.arrival = flight.arrival

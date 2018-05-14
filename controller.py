@@ -4,6 +4,7 @@ from datetime import datetime
 from WYOB_error import WYOBError
 from duty import Duty
 from database import Database
+from utils27 import utcTZ
 
 datetime_format = "%Y-%m-%d %H:%M"
 
@@ -37,7 +38,7 @@ class Controller:
         :return: [duties] the required duties
         """
         result = []
-        now = datetime.utcnow().astimezone()
+        now = datetime.utcnow().replace(tzinfo=utcTZ)
         current_or_last_index = None
         # 1. Get the next duty index:
         for i in range(len(self.duties)):
@@ -60,9 +61,8 @@ class Controller:
 
         return result
 
-
     def getNextDuty(self):
-        now = datetime.utcnow().astimezone()
+        now = datetime.utcnow().replace(tzinfo=utcTZ)
         for duty in self.duties:
             if duty.start > now and duty.nature != 'OFF':
                 return duty
@@ -88,7 +88,7 @@ class Controller:
 
     def loadDutiesFromJson(self, file):
         """ OBSOLETE
-            Do not use!
+            Do not use! unless for tests...
         """
         try:
             with open(file, 'r') as file:

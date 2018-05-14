@@ -16,6 +16,7 @@ from datetime import datetime
 from WYOB_error import WYOBError
 from IOBConnect import IOBConnect
 from duty import Duty
+from utils27 import parseDateTime
 
 datetime_format = "%Y-%m-%d %H:%M %z"
 
@@ -31,14 +32,14 @@ class Database:
     def getDuties(self, start_date=None, end_date=None):
         """ Getter for duties in the database, from datetime to datetime.
             If related parameter is missing, it will take all possible duties.
+            Result is sorted by ascending start time.
         """
         duties = []
         self._connectStorage()
 
         for key in self.storage:
             if key == 'header':
-                self.update_time = datetime.strptime(
-                    self.storage.get('header')['last_update'], datetime_format)
+                self.update_time = parseDateTime(self.storage.get('header')['last_update'])
             else:
                 duty = Duty()
                 duty.fromDict(self.storage[key])
@@ -47,6 +48,8 @@ class Database:
                     duties.append(duty)
 
         self._disconnectStorage()
+
+        duties = sorted(duties, key=lambda duty: duty.start)
         return duties
 
     def updateDuties(self, duties):
