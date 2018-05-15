@@ -7,7 +7,7 @@ from kivy.lang import Builder
 from utils27 import utcTZ
 
 Builder.load_file("duty_widget.kv")
-date_format = "%d%b%y"
+date_format = "%d %b %y"
 time_format = "%H:%M"
 
 

@@ -1,11 +1,22 @@
+#:set omanair_blue (.33, .45, .58, 1)
+#:set omanair_grey (.78, .78, .78, 1)
+
 <Login>:
     cols: 2
 
     Label:
         text: "IOB Login:"
 
-    Label:
-        text: " "
+    Button:
+        text: "Validate"
+        on_press: print('test!')
+        background_normal: ''
+        background_color: omanair_blue
+        canvas:
+            Color:
+                rgba: omanair_grey
+            Line:
+                rectangle: self.pos[0], self.pos[1], self.width, self.height
 
     Label:
         text: "Staff number:"

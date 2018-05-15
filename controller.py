@@ -6,7 +6,7 @@ from duty import Duty
 from database import Database
 from utils27 import utcTZ
 
-datetime_format = "%d%b%Y %H:%M"
+datetime_format = "%d %b %Y %H:%M"
 
 
 class Controller:
