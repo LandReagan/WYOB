@@ -8,11 +8,12 @@ BIG TODO:
     => copy it back in case of error
     => Change only what is required - DONE
 """
+from os.path import join
 
 from kivy.storage.jsonstore import JsonStore
 from kivy.logger import Logger
-from datetime import datetime
 
+import config
 from WYOB_error import WYOBError
 from IOBConnect import IOBConnect
 from duty import Duty
@@ -20,14 +21,11 @@ from utils27 import parseDateTime
 
 datetime_format = "%Y-%m-%d %H:%M %z"
 
+
 class Database:
 
-    data_file = "data.json"
     update_time = None
     storage = None
-
-    def __init__(self):
-        pass
 
     def getDuties(self, start_date=None, end_date=None):
         """ Getter for duties in the database, from datetime to datetime.
@@ -83,6 +81,7 @@ class Database:
         self.storage['header'] = {'last_update': self.update_time.strftime(datetime_format)}
         for duty in duties:
             self.storage[duty.key] = duty.asDict()
+        Logger.info(str(len(duties)) + " new duties wrote in the storage")
 
         self._disconnectStorage()
 
@@ -109,9 +108,10 @@ class Database:
 
     def _connectStorage(self):
         try:
-            self.storage = JsonStore(self.data_file)
+            self.storage = JsonStore(config.data_file_path)
         except BaseException as e:
             raise WYOBError("In Database._connectStorage, unexpected Error! " + str(e))
+        Logger.info("Found " + str(self.storage.count()) + " entries in the storage " + config.data_file_path)
 
     def _disconnectStorage(self):
         self.storage = None

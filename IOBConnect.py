@@ -36,7 +36,6 @@ class IOBConnect:
         duties and return them with the current datetime object
         :return: duties,datetime.now()
         """
-        text = None
         try:
             self._connect()
             text = self._getCheckinList()
@@ -44,8 +43,10 @@ class IOBConnect:
             raise WYOBError("Connection failed!" + str(e))
 
         if text:
+            Logger.info(text)
             self._parseDuties(text)
             self._buildDutiesAndFlights()
+            Logger.info("Found " + str(len(self._duties)) + " duties in IOB, passing to database...")
             return self._duties, utils27.getLocalAwareNow()
         else:
             return None, None
@@ -65,7 +66,7 @@ class IOBConnect:
         # 2. Trying to connect to IOB website and parsing the answer
         Logger.info("WYOB: Connecting to IOB...")
         try:
-            req = self._session.get(self._IOBURL_login_filter)
+            req = self._session.get(self._IOBURL_login_filter, verify=False)
             self._token_parser.feed(req.text)
         except requests.RequestException as e:
             self._session = None
@@ -83,10 +84,19 @@ class IOBConnect:
         }
 
         # 5. Log in
-        self._session.post(self._token_parser.new_URL, data=values)
+        try:
+            self._session.post(self._token_parser.new_URL, data=values, verify=False)
+        except requests.RequestException as e:
+            self._session = None
+            raise WYOBError("Login failed! Error (from requests):" + str(e))
+
+        Logger.info("Connection and log in successful!")
 
     def _getCheckinList(self):
-        req = self._session.get(self._IOBURL_checkin_list)
+        try:
+            req = self._session.get(self._IOBURL_checkin_list, verify=False)
+        except requests.RequestException as e:
+            raise WYOBError("Error while connecting to check-in list: " + str(e))
         return req.text
 
     def _parseDuties(self, text):
