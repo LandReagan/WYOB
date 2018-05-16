@@ -46,7 +46,7 @@ class IOBConnect:
         if text:
             self._parseDuties(text)
             self._buildDutiesAndFlights()
-            return self._duties, datetime.datetime.now()
+            return self._duties, utils27.getLocalAwareNow()
         else:
             return None, None
 

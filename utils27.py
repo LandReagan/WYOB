@@ -56,3 +56,14 @@ class TZinfo(tzinfo):
 
 
 utcTZ = TZinfo(offset=0)
+
+def getLocalAwareNow():
+    """
+    To get an aware datetime for now(), in local time
+    :return: datetime
+    """
+    now = datetime.now()
+    offset = now - datetime.utcnow()
+    rounded_offset = timedelta(seconds=round(offset.total_seconds()))
+    zone = TZinfo(offset=rounded_offset)
+    return now.replace(tzinfo=zone)

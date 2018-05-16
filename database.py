@@ -80,6 +80,7 @@ class Database:
                         self.storage.delete(key)
 
         # Write updated duties:
+        self.storage['header'] = {'last_update': self.update_time.strftime(datetime_format)}
         for duty in duties:
             self.storage[duty.key] = duty.asDict()
 
@@ -110,7 +111,7 @@ class Database:
         try:
             self.storage = JsonStore(self.data_file)
         except BaseException as e:
-            raise WYOBError("In Database._getStorage, unexpected Error!")
+            raise WYOBError("In Database._connectStorage, unexpected Error! " + str(e))
 
     def _disconnectStorage(self):
         self.storage = None
