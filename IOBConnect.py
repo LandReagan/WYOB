@@ -5,6 +5,7 @@ import requests
 
 from kivy.logger import Logger
 
+import utils27
 from parsers import TokenParser, DutyParser
 from WYOB_error import WYOBError
 from duty import Duty
@@ -15,10 +16,8 @@ class IOBConnect:
     """ This class connects to IOB system and handle requests.
     """
 
-    _IOBURL_login_filter = 'https://fltops.omanair.com/' +\
-        'mlt/filter.jsp?window=filter&loggedin=false'
-    _IOBURL_checkin_list = 'https://fltops.omanair.com/' +\
-        'mlt/checkinlist.jsp'
+    _IOBURL_login_filter = 'https://fltops.omanair.com/mlt/filter.jsp?window=filter&loggedin=false'
+    _IOBURL_checkin_list = 'https://fltops.omanair.com/mlt/checkinlist.jsp'
     _duties = []
 
     def __init__(self, username=None, password=None):
@@ -198,8 +197,8 @@ class IOBConnect:
                     datetime.timedelta(hours=12)):
                 utc_datetime += datetime.timedelta(days=1)
             gmt_diff = local_datetime - utc_datetime
-            zone = datetime.timezone(gmt_diff)
+            zone = utils27.TZinfo(offset=gmt_diff)
             aware_local_datetime = local_datetime.replace(tzinfo=zone)
             return aware_local_datetime
-        except Exception:
-            raise WYOBError('Error setting up the date from IOB.')
+        except Exception as e:
+            raise WYOBError('Error setting up the date from IOB: ' + str(e))
